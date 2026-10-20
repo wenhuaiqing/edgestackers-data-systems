@@ -8,7 +8,7 @@
      consequences before anyone decides it
   5. the ablation - every control off in turn
   6. incidents, proposals, model registry, triage alerts
-  7. write data/tapeline.build.duckdb and check the partition hashes against
+  7. write data/edgestackers.build.duckdb and check the partition hashes against
      the pinned manifest
 
 Usage (from backend/):

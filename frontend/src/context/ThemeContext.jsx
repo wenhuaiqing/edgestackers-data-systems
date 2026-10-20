@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-// Tapeline's own palette - deliberately not any firm's brand. This is a
-// platform built for an application, not a copy of anyone's product.
+// The platform's own palette - deliberately not Edge Stackers' brand. It
+// carries their name because it was built for them; it is not their product
+// and should never look like it.
 //
 //   graphite #11161D   the chrome: sidebar, hero tiles
 //   amber    #E3A23B   the mark and the active nav state - chrome only,
@@ -120,7 +121,7 @@ export const dark = {
 };
 
 const Ctx = createContext(null);
-const KEY = "tapeline_theme";
+const KEY = "edgestackers_theme";
 
 function initial() {
   try {

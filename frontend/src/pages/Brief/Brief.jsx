@@ -70,9 +70,9 @@ export default function Brief() {
         subtitle="The advertisement's own list, mapped to where each point is shown working on this platform. Then a plan for the first ninety days - which starts by learning the real system, because the right controls are the ones that fit the data and the decisions you actually have."
       />
       <Callout tone="neutral" title="What this is and is not">
-        Built for this application, on synthetic data. The feeds, venues, instruments and strategy are invented; the
-        defects are the kind real feeds have. Nothing here is based on how Edge Stackers works, which is the first
-        thing to learn.
+        Built for this application, on synthetic data, and named for the firm it was built for. It is not affiliated
+        with or endorsed by Edge Stackers. The feeds, venues, instruments and strategy are invented; the defects are
+        the kind real feeds have. Nothing here is based on how Edge Stackers works, which is the first thing to learn.
       </Callout>
       <SectionTitle>What you will own, and where it is shown</SectionTitle>
       <Card>

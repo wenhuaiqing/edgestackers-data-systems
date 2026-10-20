@@ -64,13 +64,13 @@ def overview() -> dict:
                            FROM incidents ORDER BY started_at""")
     feeds = db.rows("""
         SELECT source,
-               count(*) AS events,
-               quantile_cont(epoch_ms(ts_received) - epoch_ms(ts_exchange_raw), 0.99) AS p99_ms,
+               count(*) FILTER (WHERE status <> 'duplicate') AS events,
+               -- A re-sent copy is not a slow delivery: latency is measured on first copies.
+               quantile_cont(epoch_ms(ts_received) - epoch_ms(ts_exchange_raw), 0.99)
+                 FILTER (WHERE status <> 'duplicate') AS p99_ms,
                count(*) FILTER (WHERE status IN ('duplicate', 'held')) AS rejected,
                count(*) FILTER (WHERE status = 'redundant') AS standby
         FROM trades
-        -- A re-sent copy is not a slow delivery: latency is measured on first copies.
-        WHERE status <> 'duplicate'
         GROUP BY 1 ORDER BY 1""")
     partitions = db.rows("""SELECT venue, stream, count(*) AS partitions, count(*) FILTER (WHERE NOT ok) AS quarantined
                             FROM raw_files GROUP BY 1, 2 ORDER BY 1, 2""")

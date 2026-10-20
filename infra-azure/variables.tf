@@ -6,7 +6,7 @@ variable "subscription_id" {
 variable "prefix" {
   description = "Short resource-name prefix (lowercase alphanumerics)."
   type        = string
-  default     = "tapeline"
+  default     = "edgestackers"
 }
 
 variable "location" {

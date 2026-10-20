@@ -5,8 +5,8 @@ export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "";
 // kept in sessionStorage, scrubbed from the URL, and sent as X-Write-Token.
 // It unlocks approvals and promotion and exempts the session from the triage
 // rate limit. The plain link is read-only, and says so when you try.
-const TOKEN_KEY = "tapeline_write_token";
-const ACTOR_KEY = "tapeline_actor";
+const TOKEN_KEY = "edgestackers_write_token";
+const ACTOR_KEY = "edgestackers_actor";
 
 function captureTokenFromUrl() {
   try {

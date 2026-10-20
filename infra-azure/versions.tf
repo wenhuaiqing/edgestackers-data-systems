@@ -1,4 +1,4 @@
-# Azure deployment for Tapeline.
+# Azure deployment for the Edge Stackers data systems demo.
 #
 # Smaller than it might be, on purpose: the data is built inside the image
 # and verified against pinned digests, so there is no database server, no

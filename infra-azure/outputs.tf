@@ -4,7 +4,7 @@ output "frontend_url" {
 }
 
 output "acr_login_server" {
-  description = "docker push target: <this>/tapeline/{backend,frontend}:<tag>."
+  description = "docker push target: <this>/edgestackers/{backend,frontend}:<tag>."
   value       = azurerm_container_registry.main.login_server
 }
 

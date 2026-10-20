@@ -1,6 +1,6 @@
 """The platform's DuckDB: one process-wide connection, cursors per request.
 
-The build writes data/tapeline.build.duckdb; the app works on a copy, so a
+The build writes data/edgestackers.build.duckdb; the app works on a copy, so a
 reset is a file copy and the built state is never lost. Writes - approvals,
 reprocessing, the audit log - take the write lock; reads use their own cursor
 and never wait for anything but DuckDB itself.

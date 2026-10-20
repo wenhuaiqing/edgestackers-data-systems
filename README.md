@@ -1,4 +1,4 @@
-# Tapeline
+# Edge Stackers - data systems platform
 
 **Raw market events to decisions you can trust.** A working data-systems
 platform: three market feeds with the defects real feeds have, taken through
@@ -6,7 +6,8 @@ contracts, validation, quarantine, lineage and replay to the orders a
 short-horizon strategy sends - with every control priced by switching it off,
 and an AI triage agent measured against the on-call runbook.
 
-> **All market data is synthetic.** The venues, instruments, prices and the
+> **Built for a job application to Edge Stackers. Not affiliated with or
+> endorsed by Edge Stackers.** **All market data is synthetic.** The venues, instruments, prices and the
 > strategy are invented and generated from a seed by
 > `backend/src/app/pipeline/generate.py`. Instrument codes are four letters so
 > nothing on screen can be mistaken for a real security.
@@ -96,8 +97,8 @@ terraform apply -target azurerm_container_registry.main -target azurerm_role_ass
 $acr = terraform output -raw acr_login_server
 az acr login --name $acr.Split('.')[0]
 $sha = git rev-parse --short HEAD
-docker build -f ../backend/Dockerfile --build-arg GIT_SHA=$sha -t "$acr/tapeline/backend:$sha" ..
-docker build -f ../frontend/Dockerfile -t "$acr/tapeline/frontend:$sha" ..
-docker push "$acr/tapeline/backend:$sha"; docker push "$acr/tapeline/frontend:$sha"
+docker build -f ../backend/Dockerfile --build-arg GIT_SHA=$sha -t "$acr/edgestackers/backend:$sha" ..
+docker build -f ../frontend/Dockerfile -t "$acr/edgestackers/frontend:$sha" ..
+docker push "$acr/edgestackers/backend:$sha"; docker push "$acr/edgestackers/frontend:$sha"
 terraform apply -var "image_tag=$sha"
 ```

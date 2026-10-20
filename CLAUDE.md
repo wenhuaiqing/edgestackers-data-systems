@@ -1,15 +1,16 @@
-# tapeline
+# edgestackers-data-systems
 
 Portfolio demo: a data-systems platform for a trading desk - raw multi-venue
 market events through contracts, validation, quarantine, lineage and replay to
 the orders a strategy sends, with every control priced by ablation and an AI
-triage agent graded against the runbook. Built for an application to a
-quantitative trading firm. **All market data is synthetic.**
+triage agent graded against the runbook. Built for an application to Edge
+Stackers, a quantitative trading firm, and named for it. **Not affiliated with
+or endorsed by Edge Stackers. All market data is synthetic.**
 
 ## Layout
 
 ```
-tapeline/
+edgestackers-data-systems/
 ├── backend/           FastAPI + Python 3.12 (uv)
 │   └── src/app/
 │       ├── pipeline/  reference, generate, contracts, stages, decisions, ablation,
@@ -48,5 +49,6 @@ Tests: `cd backend && uv run pytest`. Pages: `cd frontend && BASE=http://localho
 - Numbers on screen come from the data. The triage agent proposes; it cannot write.
 - Changing the generator, pipeline or decisions changes the output: rebuild with
   `--write-manifest` and commit `infra-azure/build.sha256`, or the image build fails.
-- Never name the firm the demo was built for in the product's own chrome; the
-  First 90 days page addresses them, nothing else does.
+- Named for the firm it was built for, and says so: the not-affiliated line
+  stays in the sidebar, the First 90 days page and the README. Never their
+  logo or colours, and nothing that claims to know how they trade.

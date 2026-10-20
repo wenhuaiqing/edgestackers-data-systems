@@ -14,9 +14,9 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parents[2]
-_TMP = Path(tempfile.mkdtemp(prefix="tapeline-tests-"))
+_TMP = Path(tempfile.mkdtemp(prefix="edgestackers-tests-"))
 # Point the app at a scratch copy before any src module reads settings.
-os.environ["DUCKDB_PATH"] = str(_TMP / "tapeline.duckdb")
+os.environ["DUCKDB_PATH"] = str(_TMP / "edgestackers.duckdb")
 os.environ.setdefault("DEMO_WRITE_TOKEN", "test-token")
 os.environ["LLM_BASE_URL"] = ""
 os.environ["LLM_API_KEY"] = ""

@@ -894,7 +894,7 @@ wheels = [
 ]
 
 [[package]]
-name = "tapeline-backend"
+name = "edgestackers-backend"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

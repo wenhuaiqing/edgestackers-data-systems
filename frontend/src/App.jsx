@@ -9,6 +9,8 @@ import { useApi } from "./lib/api.js";
 import { getRoutes } from "./navigation.js";
 
 const ROUTES = getRoutes();
+// Carries their name because it was built for them. Says so, every page.
+const DISCLAIMER = "Built for a job application. Not affiliated with or endorsed by Edge Stackers; all market data is synthetic.";
 const NARROW = 920;
 
 function useNarrow() {
@@ -64,9 +66,9 @@ function Brand() {
     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
       <Mark colour={t.sidebarMark} size={28} />
       <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.15 }}>
-        <span style={{ fontSize: 15, fontWeight: 800, letterSpacing: "0.14em", color: "#FFFFFF" }}>TAPELINE</span>
+        <span style={{ fontSize: 15, fontWeight: 800, letterSpacing: "0.12em", color: "#FFFFFF" }}>EDGE STACKERS</span>
         <span style={{ fontSize: 10.5, color: t.sidebarMuted, fontWeight: 600, marginTop: 3 }}>
-          raw events to decisions you can trust
+          data systems: raw events to decisions
         </span>
       </div>
     </div>
@@ -161,6 +163,7 @@ export default function App() {
         {menuOpen && (
           <div style={{ background: t.sidebarBg, padding: "8px 10px 14px", borderBottom: `1px solid ${t.sidebarBorder}` }}>
             <NavList onPick={() => setMenuOpen(false)} />
+            <p style={{ fontSize: 11, lineHeight: 1.45, color: t.sidebarMuted, padding: "0 10px", margin: "4px 0 10px" }}>{DISCLAIMER}</p>
             <div style={{ padding: "4px 10px" }}><ThemeButton dark /></div>
           </div>
         )}
@@ -178,7 +181,10 @@ export default function App() {
         <div style={{ padding: "0 8px 18px" }}><Brand /></div>
         <NavList />
         <div style={{ flex: 1 }} />
-        <div style={{ padding: "8px 8px 0" }}><ThemeButton dark /></div>
+        <p style={{ fontSize: 10.5, lineHeight: 1.45, color: t.sidebarMuted, padding: "0 10px", margin: "12px 0 10px" }}>
+          {DISCLAIMER}
+        </p>
+        <div style={{ padding: "0 8px" }}><ThemeButton dark /></div>
       </aside>
       <main style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
         <Header />

@@ -66,7 +66,7 @@ resource "azurerm_container_app" "app" {
 
     container {
       name   = "frontend"
-      image  = "${azurerm_container_registry.main.login_server}/tapeline/frontend:${var.image_tag}"
+      image  = "${azurerm_container_registry.main.login_server}/edgestackers/frontend:${var.image_tag}"
       cpu    = 0.25
       memory = "0.5Gi"
 
@@ -78,7 +78,7 @@ resource "azurerm_container_app" "app" {
 
     container {
       name   = "backend"
-      image  = "${azurerm_container_registry.main.login_server}/tapeline/backend:${var.image_tag}"
+      image  = "${azurerm_container_registry.main.login_server}/edgestackers/backend:${var.image_tag}"
       # Approving a contract change re-runs the week in memory.
       cpu    = 1.0
       memory = "2Gi"

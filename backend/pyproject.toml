@@ -1,7 +1,7 @@
 [project]
-name = "tapeline-backend"
+name = "edgestackers-backend"
 version = "0.1.0"
-description = "FastAPI backend for Tapeline - raw market events to decisions you can trust"
+description = "FastAPI backend for the Edge Stackers data systems demo - raw market events to decisions you can trust"
 requires-python = ">=3.12"
 dependencies = [
     "fastapi>=0.111",

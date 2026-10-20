@@ -13,8 +13,9 @@ from src.app.services import analytics, db, llm, timings
 from src.settings import settings
 
 app = FastAPI(
-    title="tapeline",
-    description="Raw market events to decisions you can trust. All market data is synthetic.",
+    title="edgestackers-data-systems",
+    description=("Raw market events to decisions you can trust. Built for a job application; "
+                 "not affiliated with or endorsed by Edge Stackers. All market data is synthetic."),
     version="0.1.0",
 )
 

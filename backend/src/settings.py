@@ -31,8 +31,8 @@ class Settings(BaseSettings):
     data_dir: Path = REPO_ROOT / "data"
     # The build writes the platform here; the app serves a working copy so a
     # reset is a file copy, not a rebuild.
-    build_db_path: Path = REPO_ROOT / "data" / "tapeline.build.duckdb"
-    duckdb_path: Path = REPO_ROOT / "data" / "tapeline.duckdb"
+    build_db_path: Path = REPO_ROOT / "data" / "edgestackers.build.duckdb"
+    duckdb_path: Path = REPO_ROOT / "data" / "edgestackers.duckdb"
     contracts_dir: Path = REPO_ROOT / "contracts"
 
     # ---- Abuse controls ---------------------------------------------------

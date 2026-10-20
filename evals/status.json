@@ -1,0 +1,6414 @@
+{
+ "run_at": "2026-10-20T12:25:10",
+ "finished_at": "2026-10-20T12:30:26",
+ "model": "gemini-3.5-flash-lite",
+ "fallback_model": "gemini-3.1-flash-lite",
+ "cases": 33,
+ "summary": {
+  "rules": {
+   "cases": 33,
+   "errors": 0,
+   "passed": 27,
+   "category_ok": 27,
+   "harmful": 5,
+   "abstained": 0,
+   "evidence_grounded": 33,
+   "evidence_items": 33,
+   "by_kind": {
+    "real": {
+     "cases": 9,
+     "passed": 9
+    },
+    "variant": {
+     "cases": 18,
+     "passed": 18
+    },
+    "hard": {
+     "cases": 6,
+     "passed": 0
+    }
+   },
+   "p50_ms": 0,
+   "p95_ms": 0,
+   "avg_steps": 1,
+   "fallback_model_used": 0
+  },
+  "agent": {
+   "cases": 33,
+   "errors": 0,
+   "passed": 29,
+   "category_ok": 29,
+   "harmful": 4,
+   "abstained": 1,
+   "evidence_grounded": 100,
+   "evidence_items": 100,
+   "by_kind": {
+    "real": {
+     "cases": 9,
+     "passed": 9
+    },
+    "variant": {
+     "cases": 18,
+     "passed": 18
+    },
+    "hard": {
+     "cases": 6,
+     "passed": 2
+    }
+   },
+   "p50_ms": 4987,
+   "p95_ms": 16710,
+   "avg_steps": 3.82,
+   "fallback_model_used": 9
+  }
+ },
+ "results": [
+  {
+   "case_id": "real-INC-01",
+   "kind": "real",
+   "engine": "rules",
+   "label": {
+    "category": "duplicate_resend",
+    "action": "dedupe_keep_first"
+   },
+   "why": null,
+   "check_id": "duplicate_trade_id",
+   "summary": "duplicate_trade_id fired 218 times on ALT trades",
+   "result": {
+    "category": "duplicate_resend",
+    "confidence": 0.9,
+    "evidence": [
+     "218 copies beyond the first"
+    ],
+    "proposed_action": "dedupe_keep_first",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: duplicate_trade_id -> duplicate_resend."
+   },
+   "model": "runbook",
+   "ms": 0.09,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-01",
+   "kind": "real",
+   "engine": "agent",
+   "label": {
+    "category": "duplicate_resend",
+    "action": "dedupe_keep_first"
+   },
+   "why": null,
+   "check_id": "duplicate_trade_id",
+   "summary": "duplicate_trade_id fired 218 times on ALT trades",
+   "result": {
+    "category": "duplicate_resend",
+    "confidence": 1.0,
+    "evidence": [
+     "repeated_trade_ids: 218",
+     "same_price_and_qty_on_every_copy: true",
+     "example trade_id: A20001371"
+    ],
+    "proposed_action": "dedupe_keep_first",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "ALT trades feed resent 218 trade IDs with new event IDs while price and quantity match identically on every copy."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 7443,
+   "steps": 3,
+   "tools": [
+    "get_duplicate_stats",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_duplicate_stats": {
+     "venue": "ALT",
+     "day": "2026-10-13",
+     "repeated_trade_ids": 218,
+     "copies_beyond_first": 218,
+     "repeat_received_from": "2026-10-13 11:42:10.500",
+     "repeat_received_to": "2026-10-13 11:42:10.934",
+     "original_exchange_times_from": "2026-10-13 11:27:12.159",
+     "original_exchange_times_to": "2026-10-13 11:42:07.853",
+     "same_price_and_qty_on_every_copy": true,
+     "example": {
+      "trade_id": "A20001371",
+      "event_ids": [
+       "AE-20261013-0001371",
+       "AE-20261013-0001589"
+      ]
+     }
+    },
+    "get_samples": [
+     {
+      "event_id": "AE-20261013-0001589",
+      "source": "ALT",
+      "symbol": "ALBA",
+      "trade_id": "A20001371",
+      "ts_exchange": "2026-10-13 11:27:12.159",
+      "ts_received": "2026-10-13 11:42:10.500",
+      "price": 18.17,
+      "qty": 857.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001590",
+      "source": "ALT",
+      "symbol": "LACH",
+      "trade_id": "A20001372",
+      "ts_exchange": "2026-10-13 11:27:12.387",
+      "ts_received": "2026-10-13 11:42:10.502",
+      "price": 4.55,
+      "qty": 1600.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001591",
+      "source": "ALT",
+      "symbol": "BRIG",
+      "trade_id": "A20001373",
+      "ts_exchange": "2026-10-13 11:27:13.237",
+      "ts_received": "2026-10-13 11:42:10.504",
+      "price": 31.81,
+      "qty": 1435.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001592",
+      "source": "ALT",
+      "symbol": "IRON",
+      "trade_id": "A20001374",
+      "ts_exchange": "2026-10-13 11:27:23.701",
+      "ts_received": "2026-10-13 11:42:10.506",
+      "price": 41.46,
+      "qty": 736.0,
+      "side": "B",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001593",
+      "source": "ALT",
+      "symbol": "QUIL",
+      "trade_id": "A20001375",
+      "ts_exchange": "2026-10-13 11:27:26.505",
+      "ts_received": "2026-10-13 11:42:10.508",
+      "price": 69.25,
+      "qty": 229.0,
+      "side": "S",
+      "flags": ""
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-01",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "duplicate_resend",
+    "action": "dedupe_keep_first"
+   },
+   "why": null,
+   "check_id": "duplicate_trade_id",
+   "summary": "duplicate_trade_id fired 218 times on ALT trades",
+   "result": {
+    "category": "duplicate_resend",
+    "confidence": 0.9,
+    "evidence": [
+     "218 copies beyond the first"
+    ],
+    "proposed_action": "dedupe_keep_first",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: duplicate_trade_id -> duplicate_resend."
+   },
+   "model": "runbook",
+   "ms": 0.08,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-01",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "duplicate_resend",
+    "action": "dedupe_keep_first"
+   },
+   "why": null,
+   "check_id": "duplicate_trade_id",
+   "summary": "duplicate_trade_id fired 218 times on ALT trades",
+   "result": {
+    "category": "duplicate_resend",
+    "confidence": 1.0,
+    "evidence": [
+     "repeated_trade_ids: 218",
+     "copies_beyond_first: 218",
+     "same_price_and_qty_on_every_copy: true"
+    ],
+    "proposed_action": "dedupe_keep_first",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Venue ALT resent 218 trade IDs with new event IDs, but every copy has matching price, quantity, and identical trade IDs."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 3326,
+   "steps": 3,
+   "tools": [
+    "get_duplicate_stats",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_duplicate_stats": {
+     "venue": "ALT",
+     "day": "2026-09-23",
+     "repeated_trade_ids": 218,
+     "copies_beyond_first": 218,
+     "repeat_received_from": "2026-09-23 11:42:10.500",
+     "repeat_received_to": "2026-09-23 11:42:10.934",
+     "original_exchange_times_from": "2026-09-23 11:27:12.159",
+     "original_exchange_times_to": "2026-09-23 11:42:07.853",
+     "same_price_and_qty_on_every_copy": true,
+     "example": {
+      "trade_id": "A20001371",
+      "event_ids": [
+       "AE-20261013-0001371",
+       "AE-20261013-0001589"
+      ]
+     }
+    },
+    "get_samples": [
+     {
+      "event_id": "AE-20261013-0001589",
+      "source": "ALT",
+      "symbol": "ALBA",
+      "trade_id": "A20001371",
+      "ts_exchange": "2026-09-23 11:27:12.159",
+      "ts_received": "2026-09-23 11:42:10.500",
+      "price": 18.17,
+      "qty": 857.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001590",
+      "source": "ALT",
+      "symbol": "LACH",
+      "trade_id": "A20001372",
+      "ts_exchange": "2026-09-23 11:27:12.387",
+      "ts_received": "2026-09-23 11:42:10.502",
+      "price": 4.55,
+      "qty": 1600.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001591",
+      "source": "ALT",
+      "symbol": "TWEE",
+      "trade_id": "A20001373",
+      "ts_exchange": "2026-09-23 11:27:13.237",
+      "ts_received": "2026-09-23 11:42:10.504",
+      "price": 31.81,
+      "qty": 1435.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001592",
+      "source": "ALT",
+      "symbol": "HUON",
+      "trade_id": "A20001374",
+      "ts_exchange": "2026-09-23 11:27:23.701",
+      "ts_received": "2026-09-23 11:42:10.506",
+      "price": 41.46,
+      "qty": 736.0,
+      "side": "B",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001593",
+      "source": "ALT",
+      "symbol": "ROPE",
+      "trade_id": "A20001375",
+      "ts_exchange": "2026-09-23 11:27:26.505",
+      "ts_received": "2026-09-23 11:42:10.508",
+      "price": 69.25,
+      "qty": 229.0,
+      "side": "S",
+      "flags": ""
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-01",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "duplicate_resend",
+    "action": "dedupe_keep_first"
+   },
+   "why": null,
+   "check_id": "duplicate_trade_id",
+   "summary": "duplicate_trade_id fired 218 times on ALT trades",
+   "result": {
+    "category": "duplicate_resend",
+    "confidence": 0.9,
+    "evidence": [
+     "218 copies beyond the first"
+    ],
+    "proposed_action": "dedupe_keep_first",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: duplicate_trade_id -> duplicate_resend."
+   },
+   "model": "runbook",
+   "ms": 0.1,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-01",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "duplicate_resend",
+    "action": "dedupe_keep_first"
+   },
+   "why": null,
+   "check_id": "duplicate_trade_id",
+   "summary": "duplicate_trade_id fired 218 times on ALT trades",
+   "result": {
+    "category": "duplicate_resend",
+    "confidence": 1.0,
+    "evidence": [
+     "repeated_trade_ids: 218",
+     "same_price_and_qty_on_every_copy: true",
+     "example: trade_id: A20001371 with multiple event_ids AE-20261013-0001371 and AE-20261013-0001589"
+    ],
+    "proposed_action": "dedupe_keep_first",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "ALT trades experienced duplicate resends with new event IDs but identical prices and quantities. Proposed action is to deduplicate and keep the first copy."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 3879,
+   "steps": 3,
+   "tools": [
+    "get_duplicate_stats",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_duplicate_stats": {
+     "venue": "ALT",
+     "day": "2026-09-03",
+     "repeated_trade_ids": 218,
+     "copies_beyond_first": 218,
+     "repeat_received_from": "2026-09-03 11:42:10.500",
+     "repeat_received_to": "2026-09-03 11:42:10.934",
+     "original_exchange_times_from": "2026-09-03 11:27:12.159",
+     "original_exchange_times_to": "2026-09-03 11:42:07.853",
+     "same_price_and_qty_on_every_copy": true,
+     "example": {
+      "trade_id": "A20001371",
+      "event_ids": [
+       "AE-20261013-0001371",
+       "AE-20261013-0001589"
+      ]
+     }
+    },
+    "get_samples": [
+     {
+      "event_id": "AE-20261013-0001589",
+      "source": "ALT",
+      "symbol": "ALBA",
+      "trade_id": "A20001371",
+      "ts_exchange": "2026-09-03 11:27:12.159",
+      "ts_received": "2026-09-03 11:42:10.500",
+      "price": 18.17,
+      "qty": 857.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001590",
+      "source": "ALT",
+      "symbol": "LACH",
+      "trade_id": "A20001372",
+      "ts_exchange": "2026-09-03 11:27:12.387",
+      "ts_received": "2026-09-03 11:42:10.502",
+      "price": 4.55,
+      "qty": 1600.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001591",
+      "source": "ALT",
+      "symbol": "ALBA",
+      "trade_id": "A20001373",
+      "ts_exchange": "2026-09-03 11:27:13.237",
+      "ts_received": "2026-09-03 11:42:10.504",
+      "price": 31.81,
+      "qty": 1435.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001592",
+      "source": "ALT",
+      "symbol": "FLIN",
+      "trade_id": "A20001374",
+      "ts_exchange": "2026-09-03 11:27:23.701",
+      "ts_received": "2026-09-03 11:42:10.506",
+      "price": 41.46,
+      "qty": 736.0,
+      "side": "B",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001593",
+      "source": "ALT",
+      "symbol": "JARR",
+      "trade_id": "A20001375",
+      "ts_exchange": "2026-09-03 11:27:26.505",
+      "ts_received": "2026-09-03 11:42:10.508",
+      "price": 69.25,
+      "qty": 229.0,
+      "side": "S",
+      "flags": ""
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-02",
+   "kind": "real",
+   "engine": "rules",
+   "label": {
+    "category": "feed_gap",
+    "action": "fill_from_backup_feed"
+   },
+   "why": null,
+   "check_id": "feed_gap",
+   "summary": "feed_gap: the vendor feed is carrying PRIMARY trades the direct feed has not delivered",
+   "result": {
+    "category": "feed_gap",
+    "confidence": 0.9,
+    "evidence": [
+     "459 vendor_only trades in the window"
+    ],
+    "proposed_action": "fill_from_backup_feed",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: feed_gap -> feed_gap."
+   },
+   "model": "runbook",
+   "ms": 0.13,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-02",
+   "kind": "real",
+   "engine": "agent",
+   "label": {
+    "category": "feed_gap",
+    "action": "fill_from_backup_feed"
+   },
+   "why": null,
+   "check_id": "feed_gap",
+   "summary": "feed_gap: the vendor feed is carrying PRIMARY trades the direct feed has not delivered",
+   "result": {
+    "category": "feed_gap",
+    "confidence": 1.0,
+    "evidence": [
+     "\"primary_direct\": 0, \"vendor_only\": 46 for minute 14:05",
+     "\"primary_direct\": 0, \"vendor_only\": 50 for minute 15:15",
+     "\"flags\": \"gap_fill;\" in vendor feed samples",
+     "\"compared\": \"VENDOR exchange time minus PRIMARY exchange time, same trade id\""
+    ],
+    "proposed_action": "fill_from_backup_feed",
+    "affects_trading": true,
+    "instruments_to_gate": [
+     "PRIMARY"
+    ],
+    "summary": "The direct feed is silent from 14:05 to 14:15 while the vendor feed carries PRIMARY trades, confirmed by zero primary_direct counts and active vendor_only gap fills."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 6471,
+   "steps": 5,
+   "tools": [
+    "get_feed_activity",
+    "get_samples",
+    "get_feed_latency",
+    "get_cross_feed_alignment"
+   ],
+   "retrieved": {
+    "get_feed_activity": {
+     "day": "2026-10-13",
+     "window": [
+      "2026-10-13 14:02:00.000",
+      "2026-10-13 14:19:00.000"
+     ],
+     "per_minute": [
+      {
+       "minute": "14:02",
+       "primary_direct": 39,
+       "vendor": 39,
+       "vendor_only": 0,
+       "alt": 16
+      },
+      {
+       "minute": "14:03",
+       "primary_direct": 40,
+       "vendor": 40,
+       "vendor_only": 0,
+       "alt": 25
+      },
+      {
+       "minute": "14:04",
+       "primary_direct": 40,
+       "vendor": 40,
+       "vendor_only": 0,
+       "alt": 23
+      },
+      {
+       "minute": "14:05",
+       "primary_direct": 0,
+       "vendor": 46,
+       "vendor_only": 46,
+       "alt": 11
+      },
+      {
+       "minute": "14:06",
+       "primary_direct": 0,
+       "vendor": 42,
+       "vendor_only": 42,
+       "alt": 16
+      },
+      {
+       "minute": "14:07",
+       "primary_direct": 0,
+       "vendor": 40,
+       "vendor_only": 40,
+       "alt": 16
+      },
+      {
+       "minute": "14:08",
+       "primary_direct": 0,
+       "vendor": 42,
+       "vendor_only": 42,
+       "alt": 14
+      },
+      {
+       "minute": "14:09",
+       "primary_direct": 0,
+       "vendor": 44,
+       "vendor_only": 44,
+       "alt": 18
+      },
+      {
+       "minute": "14:10",
+       "primary_direct": 0,
+       "vendor": 44,
+       "vendor_only": 44,
+       "alt": 17
+      },
+      {
+       "minute": "14:11",
+       "primary_direct": 0,
+       "vendor": 42,
+       "vendor_only": 42,
+       "alt": 15
+      },
+      {
+       "minute": "14:12",
+       "primary_direct": 0,
+       "vendor": 46,
+       "vendor_only": 46,
+       "alt": 13
+      },
+      {
+       "minute": "14:13",
+       "primary_direct": 0,
+       "vendor": 34,
+       "vendor_only": 34,
+       "alt": 19
+      },
+      {
+       "minute": "14:14",
+       "primary_direct": 0,
+       "vendor": 29,
+       "vendor_only": 29,
+       "alt": 17
+      },
+      {
+       "minute": "14:15",
+       "primary_direct": 0,
+       "vendor": 50,
+       "vendor_only": 50,
+       "alt": 19
+      },
+      {
+       "minute": "14:16",
+       "primary_direct": 35,
+       "vendor": 35,
+       "vendor_only": 0,
+       "alt": 16
+      },
+      {
+       "minute": "14:17",
+       "primary_direct": 48,
+       "vendor": 48,
+       "vendor_only": 0,
+       "alt": 17
+      },
+      {
+       "minute": "14:18",
+       "primary_direct": 48,
+       "vendor": 48,
+       "vendor_only": 0,
+       "alt": 16
+      }
+     ]
+    },
+    "get_samples": [
+     {
+      "event_id": "VS-20010962",
+      "source": "VENDOR",
+      "symbol": "IRON",
+      "trade_id": "P20010962",
+      "ts_exchange": "2026-10-13 14:05:00.293",
+      "ts_received": "2026-10-13 14:05:00.526",
+      "price": 40.91,
+      "qty": 1067.0,
+      "side": "B",
+      "flags": "gap_fill;"
+     },
+     {
+      "event_id": "VS-20010963",
+      "source": "VENDOR",
+      "symbol": "EYRE",
+      "trade_id": "P20010963",
+      "ts_exchange": "2026-10-13 14:05:03.214",
+      "ts_received": "2026-10-13 14:05:03.545",
+      "price": 3.17,
+      "qty": 1968.0,
+      "side": "S",
+      "flags": "gap_fill;"
+     },
+     {
+      "event_id": "VS-20010964",
+      "source": "VENDOR",
+      "symbol": "IRON",
+      "trade_id": "P20010965",
+      "ts_exchange": "2026-10-13 14:05:05.446",
+      "ts_received": "2026-10-13 14:05:05.603",
+      "price": 40.92,
+      "qty": 2626.0,
+      "side": "B",
+      "flags": "gap_fill;"
+     },
+     {
+      "event_id": "VS-20010965",
+      "source": "VENDOR",
+      "symbol": "ALBA",
+      "trade_id": "P20010964",
+      "ts_exchange": "2026-10-13 14:05:05.329",
+      "ts_received": "2026-10-13 14:05:07.143",
+      "price": 18.19,
+      "qty": 895.0,
+      "side": "B",
+      "flags": "gap_fill;"
+     },
+     {
+      "event_id": "VS-20010966",
+      "source": "VENDOR",
+      "symbol": "GAWL",
+      "trade_id": "P20010966",
+      "ts_exchange": "2026-10-13 14:05:10.781",
+      "ts_received": "2026-10-13 14:05:10.885",
+      "price": 9.44,
+      "qty": 387.0,
+      "side": "B",
+      "flags": "gap_fill;"
+     }
+    ],
+    "get_feed_latency": {
+     "source": "PRIMARY",
+     "day": "2026-10-13",
+     "events": 15500,
+     "p50_ms": 1.196,
+     "p95_ms": 2.731,
+     "p99_ms": 3.79206,
+     "negative_share": 0.0,
+     "beyond_watermark_share": 0.000387,
+     "contract_freshness_p99_ms": 2000
+    },
+    "get_cross_feed_alignment": {
+     "day": "2026-10-13",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 15500,
+     "median_ms": 0.0,
+     "mad_ms": 0.0,
+     "full_day_median_ms": 0.0,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 4,
+    "evidence": 4,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-02",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "feed_gap",
+    "action": "fill_from_backup_feed"
+   },
+   "why": null,
+   "check_id": "feed_gap",
+   "summary": "feed_gap: the vendor feed is carrying PRIMARY trades the direct feed has not delivered",
+   "result": {
+    "category": "feed_gap",
+    "confidence": 0.9,
+    "evidence": [
+     "459 vendor_only trades in the window"
+    ],
+    "proposed_action": "fill_from_backup_feed",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: feed_gap -> feed_gap."
+   },
+   "model": "runbook",
+   "ms": 0.1,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-02",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "feed_gap",
+    "action": "fill_from_backup_feed"
+   },
+   "why": null,
+   "check_id": "feed_gap",
+   "summary": "feed_gap: the vendor feed is carrying PRIMARY trades the direct feed has not delivered",
+   "result": {
+    "category": "feed_gap",
+    "confidence": 1.0,
+    "evidence": [
+     "primary_direct: 0 trades per minute from 14:05 to 14:15 while vendor received trades",
+     "vendor_only count was 46 during 14:05 minute"
+    ],
+    "proposed_action": "fill_from_backup_feed",
+    "affects_trading": true,
+    "instruments_to_gate": [
+     "HUON",
+     "GAWL",
+     "ALBA"
+    ],
+    "summary": "The primary direct feed is silent from 14:05 to 14:15 while the vendor feed continues to receive trades with gap_fill flags, indicating a feed gap on the primary direct connection."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 4987,
+   "steps": 4,
+   "tools": [
+    "get_feed_activity",
+    "get_samples",
+    "get_feed_latency"
+   ],
+   "retrieved": {
+    "get_feed_activity": {
+     "day": "2026-09-23",
+     "window": [
+      "2026-09-23 14:02:00.000",
+      "2026-09-23 14:19:00.000"
+     ],
+     "per_minute": [
+      {
+       "minute": "14:02",
+       "primary_direct": 39,
+       "vendor": 39,
+       "vendor_only": 0,
+       "alt": 16
+      },
+      {
+       "minute": "14:03",
+       "primary_direct": 40,
+       "vendor": 40,
+       "vendor_only": 0,
+       "alt": 25
+      },
+      {
+       "minute": "14:04",
+       "primary_direct": 40,
+       "vendor": 40,
+       "vendor_only": 0,
+       "alt": 23
+      },
+      {
+       "minute": "14:05",
+       "primary_direct": 0,
+       "vendor": 46,
+       "vendor_only": 46,
+       "alt": 11
+      },
+      {
+       "minute": "14:06",
+       "primary_direct": 0,
+       "vendor": 42,
+       "vendor_only": 42,
+       "alt": 16
+      },
+      {
+       "minute": "14:07",
+       "primary_direct": 0,
+       "vendor": 40,
+       "vendor_only": 40,
+       "alt": 16
+      },
+      {
+       "minute": "14:08",
+       "primary_direct": 0,
+       "vendor": 42,
+       "vendor_only": 42,
+       "alt": 14
+      },
+      {
+       "minute": "14:09",
+       "primary_direct": 0,
+       "vendor": 44,
+       "vendor_only": 44,
+       "alt": 18
+      },
+      {
+       "minute": "14:10",
+       "primary_direct": 0,
+       "vendor": 44,
+       "vendor_only": 44,
+       "alt": 17
+      },
+      {
+       "minute": "14:11",
+       "primary_direct": 0,
+       "vendor": 42,
+       "vendor_only": 42,
+       "alt": 15
+      },
+      {
+       "minute": "14:12",
+       "primary_direct": 0,
+       "vendor": 46,
+       "vendor_only": 46,
+       "alt": 13
+      },
+      {
+       "minute": "14:13",
+       "primary_direct": 0,
+       "vendor": 34,
+       "vendor_only": 34,
+       "alt": 19
+      },
+      {
+       "minute": "14:14",
+       "primary_direct": 0,
+       "vendor": 29,
+       "vendor_only": 29,
+       "alt": 17
+      },
+      {
+       "minute": "14:15",
+       "primary_direct": 0,
+       "vendor": 50,
+       "vendor_only": 50,
+       "alt": 19
+      },
+      {
+       "minute": "14:16",
+       "primary_direct": 35,
+       "vendor": 35,
+       "vendor_only": 0,
+       "alt": 16
+      },
+      {
+       "minute": "14:17",
+       "primary_direct": 48,
+       "vendor": 48,
+       "vendor_only": 0,
+       "alt": 17
+      },
+      {
+       "minute": "14:18",
+       "primary_direct": 48,
+       "vendor": 48,
+       "vendor_only": 0,
+       "alt": 16
+      }
+     ]
+    },
+    "get_samples": [
+     {
+      "event_id": "VS-20010962",
+      "source": "VENDOR",
+      "symbol": "HUON",
+      "trade_id": "P20010962",
+      "ts_exchange": "2026-09-23 14:05:00.293",
+      "ts_received": "2026-09-23 14:05:00.526",
+      "price": 40.91,
+      "qty": 1067.0,
+      "side": "B",
+      "flags": "gap_fill;"
+     },
+     {
+      "event_id": "VS-20010963",
+      "source": "VENDOR",
+      "symbol": "GAWL",
+      "trade_id": "P20010963",
+      "ts_exchange": "2026-09-23 14:05:03.214",
+      "ts_received": "2026-09-23 14:05:03.545",
+      "price": 3.17,
+      "qty": 1968.0,
+      "side": "S",
+      "flags": "gap_fill;"
+     },
+     {
+      "event_id": "VS-20010964",
+      "source": "VENDOR",
+      "symbol": "HUON",
+      "trade_id": "P20010965",
+      "ts_exchange": "2026-09-23 14:05:05.446",
+      "ts_received": "2026-09-23 14:05:05.603",
+      "price": 40.92,
+      "qty": 2626.0,
+      "side": "B",
+      "flags": "gap_fill;"
+     },
+     {
+      "event_id": "VS-20010965",
+      "source": "VENDOR",
+      "symbol": "ALBA",
+      "trade_id": "P20010964",
+      "ts_exchange": "2026-09-23 14:05:05.329",
+      "ts_received": "2026-09-23 14:05:07.143",
+      "price": 18.19,
+      "qty": 895.0,
+      "side": "B",
+      "flags": "gap_fill;"
+     },
+     {
+      "event_id": "VS-20010966",
+      "source": "VENDOR",
+      "symbol": "GAWL",
+      "trade_id": "P20010966",
+      "ts_exchange": "2026-09-23 14:05:10.781",
+      "ts_received": "2026-09-23 14:05:10.885",
+      "price": 9.44,
+      "qty": 387.0,
+      "side": "B",
+      "flags": "gap_fill;"
+     }
+    ],
+    "get_feed_latency": {
+     "source": "PRIMARY",
+     "day": "2026-09-23",
+     "events": 15500,
+     "p50_ms": 1.196,
+     "p95_ms": 2.731,
+     "p99_ms": 3.79206,
+     "negative_share": 0.0,
+     "beyond_watermark_share": 0.000387,
+     "contract_freshness_p99_ms": 2000
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 2,
+    "evidence": 2,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-02",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "feed_gap",
+    "action": "fill_from_backup_feed"
+   },
+   "why": null,
+   "check_id": "feed_gap",
+   "summary": "feed_gap: the vendor feed is carrying PRIMARY trades the direct feed has not delivered",
+   "result": {
+    "category": "feed_gap",
+    "confidence": 0.9,
+    "evidence": [
+     "459 vendor_only trades in the window"
+    ],
+    "proposed_action": "fill_from_backup_feed",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: feed_gap -> feed_gap."
+   },
+   "model": "runbook",
+   "ms": 0.11,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-02",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "feed_gap",
+    "action": "fill_from_backup_feed"
+   },
+   "why": null,
+   "check_id": "feed_gap",
+   "summary": "feed_gap: the vendor feed is carrying PRIMARY trades the direct feed has not delivered",
+   "result": {
+    "category": "feed_gap",
+    "confidence": 1.0,
+    "evidence": [
+     "primary_direct dropped to 0 trades per minute starting at 14:05 while vendor continued carrying trades (e.g. 46 vendor_only trades at 14:05)",
+     "samples show vendor trades flagged with gap_fill; during the outage period"
+    ],
+    "proposed_action": "fill_from_backup_feed",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Primary direct feed stopped delivering trades starting at 14:05 while the vendor feed continued delivering them as gap fills; filling from the backup/vendor feed is required."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 3615,
+   "steps": 3,
+   "tools": [
+    "get_samples",
+    "get_feed_activity",
+    "get_feed_latency",
+    "get_cross_feed_alignment"
+   ],
+   "retrieved": {
+    "get_samples": [
+     {
+      "event_id": "VS-20010962",
+      "source": "VENDOR",
+      "symbol": "FLIN",
+      "trade_id": "P20010962",
+      "ts_exchange": "2026-09-03 14:05:00.293",
+      "ts_received": "2026-09-03 14:05:00.526",
+      "price": 40.91,
+      "qty": 1067.0,
+      "side": "B",
+      "flags": "gap_fill;"
+     },
+     {
+      "event_id": "VS-20010963",
+      "source": "VENDOR",
+      "symbol": "CALD",
+      "trade_id": "P20010963",
+      "ts_exchange": "2026-09-03 14:05:03.214",
+      "ts_received": "2026-09-03 14:05:03.545",
+      "price": 3.17,
+      "qty": 1968.0,
+      "side": "S",
+      "flags": "gap_fill;"
+     },
+     {
+      "event_id": "VS-20010964",
+      "source": "VENDOR",
+      "symbol": "FLIN",
+      "trade_id": "P20010965",
+      "ts_exchange": "2026-09-03 14:05:05.446",
+      "ts_received": "2026-09-03 14:05:05.603",
+      "price": 40.92,
+      "qty": 2626.0,
+      "side": "B",
+      "flags": "gap_fill;"
+     },
+     {
+      "event_id": "VS-20010965",
+      "source": "VENDOR",
+      "symbol": "ALBA",
+      "trade_id": "P20010964",
+      "ts_exchange": "2026-09-03 14:05:05.329",
+      "ts_received": "2026-09-03 14:05:07.143",
+      "price": 18.19,
+      "qty": 895.0,
+      "side": "B",
+      "flags": "gap_fill;"
+     },
+     {
+      "event_id": "VS-20010966",
+      "source": "VENDOR",
+      "symbol": "GAWL",
+      "trade_id": "P20010966",
+      "ts_exchange": "2026-09-03 14:05:10.781",
+      "ts_received": "2026-09-03 14:05:10.885",
+      "price": 9.44,
+      "qty": 387.0,
+      "side": "B",
+      "flags": "gap_fill;"
+     }
+    ],
+    "get_feed_activity": {
+     "day": "2026-09-03",
+     "window": [
+      "2026-09-03 14:02:00.000",
+      "2026-09-03 14:19:00.000"
+     ],
+     "per_minute": [
+      {
+       "minute": "14:02",
+       "primary_direct": 39,
+       "vendor": 39,
+       "vendor_only": 0,
+       "alt": 16
+      },
+      {
+       "minute": "14:03",
+       "primary_direct": 40,
+       "vendor": 40,
+       "vendor_only": 0,
+       "alt": 25
+      },
+      {
+       "minute": "14:04",
+       "primary_direct": 40,
+       "vendor": 40,
+       "vendor_only": 0,
+       "alt": 23
+      },
+      {
+       "minute": "14:05",
+       "primary_direct": 0,
+       "vendor": 46,
+       "vendor_only": 46,
+       "alt": 11
+      },
+      {
+       "minute": "14:06",
+       "primary_direct": 0,
+       "vendor": 42,
+       "vendor_only": 42,
+       "alt": 16
+      },
+      {
+       "minute": "14:07",
+       "primary_direct": 0,
+       "vendor": 40,
+       "vendor_only": 40,
+       "alt": 16
+      },
+      {
+       "minute": "14:08",
+       "primary_direct": 0,
+       "vendor": 42,
+       "vendor_only": 42,
+       "alt": 14
+      },
+      {
+       "minute": "14:09",
+       "primary_direct": 0,
+       "vendor": 44,
+       "vendor_only": 44,
+       "alt": 18
+      },
+      {
+       "minute": "14:10",
+       "primary_direct": 0,
+       "vendor": 44,
+       "vendor_only": 44,
+       "alt": 17
+      },
+      {
+       "minute": "14:11",
+       "primary_direct": 0,
+       "vendor": 42,
+       "vendor_only": 42,
+       "alt": 15
+      },
+      {
+       "minute": "14:12",
+       "primary_direct": 0,
+       "vendor": 46,
+       "vendor_only": 46,
+       "alt": 13
+      },
+      {
+       "minute": "14:13",
+       "primary_direct": 0,
+       "vendor": 34,
+       "vendor_only": 34,
+       "alt": 19
+      },
+      {
+       "minute": "14:14",
+       "primary_direct": 0,
+       "vendor": 29,
+       "vendor_only": 29,
+       "alt": 17
+      },
+      {
+       "minute": "14:15",
+       "primary_direct": 0,
+       "vendor": 50,
+       "vendor_only": 50,
+       "alt": 19
+      },
+      {
+       "minute": "14:16",
+       "primary_direct": 35,
+       "vendor": 35,
+       "vendor_only": 0,
+       "alt": 16
+      },
+      {
+       "minute": "14:17",
+       "primary_direct": 48,
+       "vendor": 48,
+       "vendor_only": 0,
+       "alt": 17
+      },
+      {
+       "minute": "14:18",
+       "primary_direct": 48,
+       "vendor": 48,
+       "vendor_only": 0,
+       "alt": 16
+      }
+     ]
+    },
+    "get_feed_latency": {
+     "source": "PRIMARY",
+     "day": "2026-09-03",
+     "events": 15500,
+     "p50_ms": 1.196,
+     "p95_ms": 2.731,
+     "p99_ms": 3.79206,
+     "negative_share": 0.0,
+     "beyond_watermark_share": 0.000387,
+     "contract_freshness_p99_ms": 2000
+    },
+    "get_cross_feed_alignment": {
+     "day": "2026-09-03",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 15500,
+     "median_ms": 0.0,
+     "mad_ms": 0.0,
+     "full_day_median_ms": 0.0,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 2,
+    "evidence": 2,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-03",
+   "kind": "real",
+   "engine": "rules",
+   "label": {
+    "category": "feed_gap",
+    "action": "fill_from_backup_feed"
+   },
+   "why": null,
+   "check_id": "feed_gap",
+   "summary": "feed_gap: the vendor feed is carrying PRIMARY trades the direct feed has not delivered",
+   "result": {
+    "category": "feed_gap",
+    "confidence": 0.9,
+    "evidence": [
+     "87 vendor_only trades in the window"
+    ],
+    "proposed_action": "fill_from_backup_feed",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: feed_gap -> feed_gap."
+   },
+   "model": "runbook",
+   "ms": 0.11,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-03",
+   "kind": "real",
+   "engine": "agent",
+   "label": {
+    "category": "feed_gap",
+    "action": "fill_from_backup_feed"
+   },
+   "why": null,
+   "check_id": "feed_gap",
+   "summary": "feed_gap: the vendor feed is carrying PRIMARY trades the direct feed has not delivered",
+   "result": {
+    "category": "feed_gap",
+    "confidence": 1.0,
+    "evidence": [
+     "primary_direct=0 for minute 13:31 and 13:32 while vendor=34 and vendor=53",
+     "vendor_only=34 for minute 13:31 and vendor_only=53 for minute 13:32"
+    ],
+    "proposed_action": "fill_from_backup_feed",
+    "affects_trading": true,
+    "instruments_to_gate": [
+     "PRIMARY"
+    ],
+    "summary": "Primary direct feed experienced a temporary gap (0 trades at 13:31 and 13:32) while the vendor feed continued to carry primary trades. Recommend filling the gap from the backup/vendor feed."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 5249,
+   "steps": 5,
+   "tools": [
+    "get_feed_activity",
+    "get_feed_latency",
+    "get_cross_feed_alignment",
+    "get_duplicate_stats",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_feed_activity": {
+     "day": "2026-10-14",
+     "window": [
+      "2026-10-14 13:28:00.000",
+      "2026-10-14 13:36:00.000"
+     ],
+     "per_minute": [
+      {
+       "minute": "13:28",
+       "primary_direct": 56,
+       "vendor": 56,
+       "vendor_only": 0,
+       "alt": 26
+      },
+      {
+       "minute": "13:29",
+       "primary_direct": 46,
+       "vendor": 46,
+       "vendor_only": 0,
+       "alt": 14
+      },
+      {
+       "minute": "13:30",
+       "primary_direct": 51,
+       "vendor": 51,
+       "vendor_only": 0,
+       "alt": 18
+      },
+      {
+       "minute": "13:31",
+       "primary_direct": 0,
+       "vendor": 34,
+       "vendor_only": 34,
+       "alt": 17
+      },
+      {
+       "minute": "13:32",
+       "primary_direct": 0,
+       "vendor": 53,
+       "vendor_only": 53,
+       "alt": 12
+      },
+      {
+       "minute": "13:33",
+       "primary_direct": 47,
+       "vendor": 47,
+       "vendor_only": 0,
+       "alt": 25
+      },
+      {
+       "minute": "13:34",
+       "primary_direct": 38,
+       "vendor": 38,
+       "vendor_only": 0,
+       "alt": 13
+      },
+      {
+       "minute": "13:35",
+       "primary_direct": 54,
+       "vendor": 54,
+       "vendor_only": 0,
+       "alt": 18
+      }
+     ]
+    },
+    "get_feed_latency": {
+     "source": "PRIMARY",
+     "day": "2026-10-14",
+     "events": 16168,
+     "p50_ms": 1.197,
+     "p95_ms": 2.709,
+     "p99_ms": 3.76763,
+     "negative_share": 0.0,
+     "beyond_watermark_share": 0.000495,
+     "contract_freshness_p99_ms": 2000
+    },
+    "get_cross_feed_alignment": {
+     "day": "2026-10-14",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 16167,
+     "median_ms": 1800.0,
+     "mad_ms": 0.0,
+     "full_day_median_ms": 1800.0,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    },
+    "get_duplicate_stats": {
+     "venue": "PRIMARY",
+     "day": "2026-10-14",
+     "repeated_trade_ids": 0
+    },
+    "get_samples": [
+     {
+      "event_id": "VS-30009573",
+      "source": "VENDOR",
+      "symbol": "NAMO",
+      "trade_id": "P30009572",
+      "ts_exchange": "2026-10-14 13:31:03.001",
+      "ts_received": "2026-10-14 13:31:03.347",
+      "price": 27.46,
+      "qty": 991.0,
+      "side": "B",
+      "flags": "offset_corrected;gap_fill;"
+     },
+     {
+      "event_id": "VS-30009574",
+      "source": "VENDOR",
+      "symbol": "IRON",
+      "trade_id": "P30009573",
+      "ts_exchange": "2026-10-14 13:31:04.483",
+      "ts_received": "2026-10-14 13:31:04.621",
+      "price": 41.46,
+      "qty": 456.0,
+      "side": "S",
+      "flags": "offset_corrected;gap_fill;"
+     },
+     {
+      "event_id": "VS-30009575",
+      "source": "VENDOR",
+      "symbol": "ALBA",
+      "trade_id": "P30009574",
+      "ts_exchange": "2026-10-14 13:31:04.697",
+      "ts_received": "2026-10-14 13:31:04.813",
+      "price": 18.38,
+      "qty": 800.0,
+      "side": "B",
+      "flags": "offset_corrected;gap_fill;"
+     },
+     {
+      "event_id": "VS-30009576",
+      "source": "VENDOR",
+      "symbol": "NAMO",
+      "trade_id": "P30009575",
+      "ts_exchange": "2026-10-14 13:31:04.922",
+      "ts_received": "2026-10-14 13:31:04.998",
+      "price": 27.44,
+      "qty": 144.0,
+      "side": "B",
+      "flags": "offset_corrected;gap_fill;"
+     },
+     {
+      "event_id": "VS-30009577",
+      "source": "VENDOR",
+      "symbol": "QUIL",
+      "trade_id": "P30009576",
+      "ts_exchange": "2026-10-14 13:31:05.376",
+      "ts_received": "2026-10-14 13:31:05.839",
+      "price": 70.46,
+      "qty": 4492.0,
+      "side": "B",
+      "flags": "offset_corrected;gap_fill;"
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 2,
+    "evidence": 2,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-03",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "feed_gap",
+    "action": "fill_from_backup_feed"
+   },
+   "why": null,
+   "check_id": "feed_gap",
+   "summary": "feed_gap: the vendor feed is carrying PRIMARY trades the direct feed has not delivered",
+   "result": {
+    "category": "feed_gap",
+    "confidence": 0.9,
+    "evidence": [
+     "87 vendor_only trades in the window"
+    ],
+    "proposed_action": "fill_from_backup_feed",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: feed_gap -> feed_gap."
+   },
+   "model": "runbook",
+   "ms": 0.09,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-03",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "feed_gap",
+    "action": "fill_from_backup_feed"
+   },
+   "why": null,
+   "check_id": "feed_gap",
+   "summary": "feed_gap: the vendor feed is carrying PRIMARY trades the direct feed has not delivered",
+   "result": {
+    "category": "feed_gap",
+    "confidence": 1.0,
+    "evidence": [
+     "primary_direct: 0, vendor: 34 at 13:31",
+     "primary_direct: 0, vendor: 53 at 13:32",
+     "flags: \"gap_fill;\" in vendor samples for trade_id P30009572"
+    ],
+    "proposed_action": "fill_from_backup_feed",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "The primary direct feed experienced a gap between 13:31 and 13:32 on 2026-09-24, during which the vendor feed continued to receive trades. The vendor feed samples confirm these trades were marked as gap fills."
+   },
+   "model": "gemini-3.1-flash-lite",
+   "ms": 15824,
+   "steps": 5,
+   "tools": [
+    "get_feed_activity",
+    "get_samples",
+    "get_feed_latency",
+    "get_contract_diff",
+    "get_book_state"
+   ],
+   "retrieved": {
+    "get_feed_activity": {
+     "day": "2026-09-24",
+     "window": [
+      "2026-09-24 13:28:00.000",
+      "2026-09-24 13:36:00.000"
+     ],
+     "per_minute": [
+      {
+       "minute": "13:28",
+       "primary_direct": 56,
+       "vendor": 56,
+       "vendor_only": 0,
+       "alt": 26
+      },
+      {
+       "minute": "13:29",
+       "primary_direct": 46,
+       "vendor": 46,
+       "vendor_only": 0,
+       "alt": 14
+      },
+      {
+       "minute": "13:30",
+       "primary_direct": 51,
+       "vendor": 51,
+       "vendor_only": 0,
+       "alt": 18
+      },
+      {
+       "minute": "13:31",
+       "primary_direct": 0,
+       "vendor": 34,
+       "vendor_only": 34,
+       "alt": 17
+      },
+      {
+       "minute": "13:32",
+       "primary_direct": 0,
+       "vendor": 53,
+       "vendor_only": 53,
+       "alt": 12
+      },
+      {
+       "minute": "13:33",
+       "primary_direct": 47,
+       "vendor": 47,
+       "vendor_only": 0,
+       "alt": 25
+      },
+      {
+       "minute": "13:34",
+       "primary_direct": 38,
+       "vendor": 38,
+       "vendor_only": 0,
+       "alt": 13
+      },
+      {
+       "minute": "13:35",
+       "primary_direct": 54,
+       "vendor": 54,
+       "vendor_only": 0,
+       "alt": 18
+      }
+     ]
+    },
+    "get_samples": [
+     {
+      "event_id": "VS-30009573",
+      "source": "VENDOR",
+      "symbol": "DUNE",
+      "trade_id": "P30009572",
+      "ts_exchange": "2026-09-24 13:31:03.001",
+      "ts_received": "2026-09-24 13:31:03.347",
+      "price": 27.46,
+      "qty": 991.0,
+      "side": "B",
+      "flags": "offset_corrected;gap_fill;"
+     },
+     {
+      "event_id": "VS-30009574",
+      "source": "VENDOR",
+      "symbol": "HUON",
+      "trade_id": "P30009573",
+      "ts_exchange": "2026-09-24 13:31:04.483",
+      "ts_received": "2026-09-24 13:31:04.621",
+      "price": 41.46,
+      "qty": 456.0,
+      "side": "S",
+      "flags": "offset_corrected;gap_fill;"
+     },
+     {
+      "event_id": "VS-30009575",
+      "source": "VENDOR",
+      "symbol": "ALBA",
+      "trade_id": "P30009574",
+      "ts_exchange": "2026-09-24 13:31:04.697",
+      "ts_received": "2026-09-24 13:31:04.813",
+      "price": 18.38,
+      "qty": 800.0,
+      "side": "B",
+      "flags": "offset_corrected;gap_fill;"
+     },
+     {
+      "event_id": "VS-30009576",
+      "source": "VENDOR",
+      "symbol": "DUNE",
+      "trade_id": "P30009575",
+      "ts_exchange": "2026-09-24 13:31:04.922",
+      "ts_received": "2026-09-24 13:31:04.998",
+      "price": 27.44,
+      "qty": 144.0,
+      "side": "B",
+      "flags": "offset_corrected;gap_fill;"
+     },
+     {
+      "event_id": "VS-30009577",
+      "source": "VENDOR",
+      "symbol": "ROPE",
+      "trade_id": "P30009576",
+      "ts_exchange": "2026-09-24 13:31:05.376",
+      "ts_received": "2026-09-24 13:31:05.839",
+      "price": 70.46,
+      "qty": 4492.0,
+      "side": "B",
+      "flags": "offset_corrected;gap_fill;"
+     }
+    ],
+    "get_feed_latency": {
+     "source": "PRIMARY",
+     "day": "2026-09-24",
+     "events": 16168,
+     "p50_ms": 1.197,
+     "p95_ms": 2.709,
+     "p99_ms": 3.76763,
+     "negative_share": 0.0,
+     "beyond_watermark_share": 0.000495,
+     "contract_freshness_p99_ms": 2000
+    },
+    "get_contract_diff": {
+     "contract": "primary.trades",
+     "version_in_force": 1,
+     "partition": "PRIMARY/trades/2026-09-24.parquet",
+     "fields_observed": [
+      "event_id",
+      "event_type",
+      "symbol",
+      "trade_id",
+      "ts_exchange",
+      "ts_received",
+      "price",
+      "qty",
+      "side",
+      "cancels_trade_id"
+     ],
+     "missing_required": [],
+     "unknown_fields": [],
+     "conforms": true
+    },
+    "get_book_state": {
+     "venue": "PRIMARY",
+     "day": "2026-09-24",
+     "quotes_examined": 1200,
+     "crossed_quotes": 0
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-03",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "feed_gap",
+    "action": "fill_from_backup_feed"
+   },
+   "why": null,
+   "check_id": "feed_gap",
+   "summary": "feed_gap: the vendor feed is carrying PRIMARY trades the direct feed has not delivered",
+   "result": {
+    "category": "feed_gap",
+    "confidence": 0.9,
+    "evidence": [
+     "87 vendor_only trades in the window"
+    ],
+    "proposed_action": "fill_from_backup_feed",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: feed_gap -> feed_gap."
+   },
+   "model": "runbook",
+   "ms": 0.14,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-03",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "feed_gap",
+    "action": "fill_from_backup_feed"
+   },
+   "why": null,
+   "check_id": "feed_gap",
+   "summary": "feed_gap: the vendor feed is carrying PRIMARY trades the direct feed has not delivered",
+   "result": {
+    "category": "feed_gap",
+    "confidence": 1.0,
+    "evidence": [
+     "PRIMARY direct feed activity dropped to 0 trades per minute at 13:31 and 13:32",
+     "VENDOR feed reported 34 and 53 trades respectively during the same period as vendor-only activity"
+    ],
+    "proposed_action": "fill_from_backup_feed",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "The PRIMARY direct feed experienced a gap in trade data between 13:31 and 13:32, during which the VENDOR feed continued to report trades."
+   },
+   "model": "gemini-3.1-flash-lite",
+   "ms": 7930,
+   "steps": 3,
+   "tools": [
+    "get_samples",
+    "get_feed_activity"
+   ],
+   "retrieved": {
+    "get_samples": [
+     {
+      "event_id": "VS-30009573",
+      "source": "VENDOR",
+      "symbol": "BRIG",
+      "trade_id": "P30009572",
+      "ts_exchange": "2026-09-04 13:31:03.001",
+      "ts_received": "2026-09-04 13:31:03.347",
+      "price": 27.46,
+      "qty": 991.0,
+      "side": "B",
+      "flags": "offset_corrected;gap_fill;"
+     },
+     {
+      "event_id": "VS-30009574",
+      "source": "VENDOR",
+      "symbol": "FLIN",
+      "trade_id": "P30009573",
+      "ts_exchange": "2026-09-04 13:31:04.483",
+      "ts_received": "2026-09-04 13:31:04.621",
+      "price": 41.46,
+      "qty": 456.0,
+      "side": "S",
+      "flags": "offset_corrected;gap_fill;"
+     },
+     {
+      "event_id": "VS-30009575",
+      "source": "VENDOR",
+      "symbol": "ALBA",
+      "trade_id": "P30009574",
+      "ts_exchange": "2026-09-04 13:31:04.697",
+      "ts_received": "2026-09-04 13:31:04.813",
+      "price": 18.38,
+      "qty": 800.0,
+      "side": "B",
+      "flags": "offset_corrected;gap_fill;"
+     },
+     {
+      "event_id": "VS-30009576",
+      "source": "VENDOR",
+      "symbol": "BRIG",
+      "trade_id": "P30009575",
+      "ts_exchange": "2026-09-04 13:31:04.922",
+      "ts_received": "2026-09-04 13:31:04.998",
+      "price": 27.44,
+      "qty": 144.0,
+      "side": "B",
+      "flags": "offset_corrected;gap_fill;"
+     },
+     {
+      "event_id": "VS-30009577",
+      "source": "VENDOR",
+      "symbol": "JARR",
+      "trade_id": "P30009576",
+      "ts_exchange": "2026-09-04 13:31:05.376",
+      "ts_received": "2026-09-04 13:31:05.839",
+      "price": 70.46,
+      "qty": 4492.0,
+      "side": "B",
+      "flags": "offset_corrected;gap_fill;"
+     }
+    ],
+    "get_feed_activity": {
+     "day": "2026-09-04",
+     "window": [
+      "2026-09-04 13:28:00.000",
+      "2026-09-04 13:36:00.000"
+     ],
+     "per_minute": [
+      {
+       "minute": "13:28",
+       "primary_direct": 56,
+       "vendor": 56,
+       "vendor_only": 0,
+       "alt": 26
+      },
+      {
+       "minute": "13:29",
+       "primary_direct": 46,
+       "vendor": 46,
+       "vendor_only": 0,
+       "alt": 14
+      },
+      {
+       "minute": "13:30",
+       "primary_direct": 51,
+       "vendor": 51,
+       "vendor_only": 0,
+       "alt": 18
+      },
+      {
+       "minute": "13:31",
+       "primary_direct": 0,
+       "vendor": 34,
+       "vendor_only": 34,
+       "alt": 17
+      },
+      {
+       "minute": "13:32",
+       "primary_direct": 0,
+       "vendor": 53,
+       "vendor_only": 53,
+       "alt": 12
+      },
+      {
+       "minute": "13:33",
+       "primary_direct": 47,
+       "vendor": 47,
+       "vendor_only": 0,
+       "alt": 25
+      },
+      {
+       "minute": "13:34",
+       "primary_direct": 38,
+       "vendor": 38,
+       "vendor_only": 0,
+       "alt": 13
+      },
+      {
+       "minute": "13:35",
+       "primary_direct": 54,
+       "vendor": 54,
+       "vendor_only": 0,
+       "alt": 18
+      }
+     ]
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 2,
+    "evidence": 2,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-04",
+   "kind": "real",
+   "engine": "rules",
+   "label": {
+    "category": "clock_skew",
+    "action": "apply_measured_offset"
+   },
+   "why": null,
+   "check_id": "negative_latency",
+   "summary": "negative_latency: VENDOR events stamped as received before they happened",
+   "result": {
+    "category": "clock_skew",
+    "confidence": 0.9,
+    "evidence": [
+     "median offset 1800.0 ms"
+    ],
+    "proposed_action": "apply_measured_offset",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: negative_latency -> clock_skew."
+   },
+   "model": "runbook",
+   "ms": 0.11,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-04",
+   "kind": "real",
+   "engine": "agent",
+   "label": {
+    "category": "clock_skew",
+    "action": "apply_measured_offset"
+   },
+   "why": null,
+   "check_id": "negative_latency",
+   "summary": "negative_latency: VENDOR events stamped as received before they happened",
+   "result": {
+    "category": "clock_skew",
+    "confidence": 1.0,
+    "evidence": [
+     "median_ms: 1800.0",
+     "mad_ms: 0.0",
+     "negative_share: 0.996493"
+    ],
+    "proposed_action": "apply_measured_offset",
+    "affects_trading": true,
+    "instruments_to_gate": [
+     "OTWA",
+     "GAWL",
+     "DUNE",
+     "KOSC",
+     "SNOW"
+    ],
+    "summary": "VENDOR feed timestamps consistently sit ahead of PRIMARY by a stable offset of 1800 ms with 0.0 MAD, indicating clock skew rather than feed corruption."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 9844,
+   "steps": 5,
+   "tools": [
+    "get_samples",
+    "get_cross_feed_alignment",
+    "get_feed_latency",
+    "get_duplicate_stats"
+   ],
+   "retrieved": {
+    "get_samples": [
+     {
+      "event_id": "VS-30000001",
+      "source": "VENDOR",
+      "symbol": "OTWA",
+      "trade_id": "P30000002",
+      "ts_exchange": "2026-10-14 10:00:02.357",
+      "ts_received": "2026-10-14 10:00:00.938",
+      "price": 11.12,
+      "qty": 1014.0,
+      "side": "B",
+      "latency_ms": -1419.293
+     },
+     {
+      "event_id": "VS-30000002",
+      "source": "VENDOR",
+      "symbol": "GAWL",
+      "trade_id": "P30000003",
+      "ts_exchange": "2026-10-14 10:00:02.814",
+      "ts_received": "2026-10-14 10:00:01.216",
+      "price": 9.39,
+      "qty": 2008.0,
+      "side": "S",
+      "latency_ms": -1597.609
+     },
+     {
+      "event_id": "VS-30000003",
+      "source": "VENDOR",
+      "symbol": "DUNE",
+      "trade_id": "P30000001",
+      "ts_exchange": "2026-10-14 10:00:02.276",
+      "ts_received": "2026-10-14 10:00:01.223",
+      "price": 12.1,
+      "qty": 1550.0,
+      "side": "S",
+      "latency_ms": -1053.266
+     },
+     {
+      "event_id": "VS-30000004",
+      "source": "VENDOR",
+      "symbol": "KOSC",
+      "trade_id": "P30000004",
+      "ts_exchange": "2026-10-14 10:00:03.403",
+      "ts_received": "2026-10-14 10:00:01.805",
+      "price": 17.53,
+      "qty": 787.0,
+      "side": "B",
+      "latency_ms": -1598.067
+     },
+     {
+      "event_id": "VS-30000005",
+      "source": "VENDOR",
+      "symbol": "SNOW",
+      "trade_id": "P30000005",
+      "ts_exchange": "2026-10-14 10:00:03.523",
+      "ts_received": "2026-10-14 10:00:01.949",
+      "price": 8.49,
+      "qty": 1015.0,
+      "side": "S",
+      "latency_ms": -1573.884
+     }
+    ],
+    "get_cross_feed_alignment": {
+     "day": "2026-10-14",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 16167,
+     "median_ms": 1800.0,
+     "mad_ms": 0.0,
+     "full_day_median_ms": 1800.0,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    },
+    "get_feed_latency": {
+     "source": "VENDOR",
+     "day": "2026-10-14",
+     "events": 16255,
+     "p50_ms": -1618.821,
+     "p95_ms": -1376.9187,
+     "p99_ms": -1172.10378,
+     "negative_share": 0.996493,
+     "beyond_watermark_share": 0.001107,
+     "contract_freshness_p99_ms": 1500
+    },
+    "get_duplicate_stats": {
+     "venue": "PRIMARY",
+     "day": "2026-10-14",
+     "repeated_trade_ids": 0
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-04",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "clock_skew",
+    "action": "apply_measured_offset"
+   },
+   "why": null,
+   "check_id": "negative_latency",
+   "summary": "negative_latency: VENDOR events stamped as received before they happened",
+   "result": {
+    "category": "clock_skew",
+    "confidence": 0.9,
+    "evidence": [
+     "median offset 1800.0 ms"
+    ],
+    "proposed_action": "apply_measured_offset",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: negative_latency -> clock_skew."
+   },
+   "model": "runbook",
+   "ms": 0.08,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-04",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "clock_skew",
+    "action": "apply_measured_offset"
+   },
+   "why": null,
+   "check_id": "negative_latency",
+   "summary": "negative_latency: VENDOR events stamped as received before they happened",
+   "result": {
+    "category": "clock_skew",
+    "confidence": 1.0,
+    "evidence": [
+     "negative_share: 0.996493",
+     "p50_ms: -1618.821",
+     "median_ms: 1800.0",
+     "mad_ms: 0.0"
+    ],
+    "proposed_action": "apply_measured_offset",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "VENDOR feed timestamps exhibit consistent clock skew with a median offset of 1800.0ms relative to primary and 99.65% negative latency shares with 0.0ms MAD."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 4978,
+   "steps": 4,
+   "tools": [
+    "get_feed_latency",
+    "get_cross_feed_alignment",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_feed_latency": {
+     "source": "VENDOR",
+     "day": "2026-09-24",
+     "events": 16255,
+     "p50_ms": -1618.821,
+     "p95_ms": -1376.9187,
+     "p99_ms": -1172.10378,
+     "negative_share": 0.996493,
+     "beyond_watermark_share": 0.001107,
+     "contract_freshness_p99_ms": 1500
+    },
+    "get_cross_feed_alignment": {
+     "day": "2026-09-24",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 16167,
+     "median_ms": 1800.0,
+     "mad_ms": 0.0,
+     "full_day_median_ms": 1800.0,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    },
+    "get_samples": [
+     {
+      "event_id": "VS-30000001",
+      "source": "VENDOR",
+      "symbol": "OTWA",
+      "trade_id": "P30000002",
+      "ts_exchange": "2026-09-24 10:00:02.357",
+      "ts_received": "2026-09-24 10:00:00.938",
+      "price": 11.12,
+      "qty": 1014.0,
+      "side": "B",
+      "latency_ms": -1419.293
+     },
+     {
+      "event_id": "VS-30000002",
+      "source": "VENDOR",
+      "symbol": "GAWL",
+      "trade_id": "P30000003",
+      "ts_exchange": "2026-09-24 10:00:02.814",
+      "ts_received": "2026-09-24 10:00:01.216",
+      "price": 9.39,
+      "qty": 2008.0,
+      "side": "S",
+      "latency_ms": -1597.609
+     },
+     {
+      "event_id": "VS-30000003",
+      "source": "VENDOR",
+      "symbol": "DUNE",
+      "trade_id": "P30000001",
+      "ts_exchange": "2026-09-24 10:00:02.276",
+      "ts_received": "2026-09-24 10:00:01.223",
+      "price": 12.1,
+      "qty": 1550.0,
+      "side": "S",
+      "latency_ms": -1053.266
+     },
+     {
+      "event_id": "VS-30000004",
+      "source": "VENDOR",
+      "symbol": "LACH",
+      "trade_id": "P30000004",
+      "ts_exchange": "2026-09-24 10:00:03.403",
+      "ts_received": "2026-09-24 10:00:01.805",
+      "price": 17.53,
+      "qty": 787.0,
+      "side": "B",
+      "latency_ms": -1598.067
+     },
+     {
+      "event_id": "VS-30000005",
+      "source": "VENDOR",
+      "symbol": "SNOW",
+      "trade_id": "P30000005",
+      "ts_exchange": "2026-09-24 10:00:03.523",
+      "ts_received": "2026-09-24 10:00:01.949",
+      "price": 8.49,
+      "qty": 1015.0,
+      "side": "S",
+      "latency_ms": -1573.884
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 4,
+    "evidence": 4,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-04",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "clock_skew",
+    "action": "apply_measured_offset"
+   },
+   "why": null,
+   "check_id": "negative_latency",
+   "summary": "negative_latency: VENDOR events stamped as received before they happened",
+   "result": {
+    "category": "clock_skew",
+    "confidence": 0.9,
+    "evidence": [
+     "median offset 1800.0 ms"
+    ],
+    "proposed_action": "apply_measured_offset",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: negative_latency -> clock_skew."
+   },
+   "model": "runbook",
+   "ms": 0.12,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-04",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "clock_skew",
+    "action": "apply_measured_offset"
+   },
+   "why": null,
+   "check_id": "negative_latency",
+   "summary": "negative_latency: VENDOR events stamped as received before they happened",
+   "result": {
+    "category": "clock_skew",
+    "confidence": 1.0,
+    "evidence": [
+     "p50_ms: -1618.821",
+     "negative_share: 0.996493",
+     "median_ms: 1800.0",
+     "mad_ms: 0.0"
+    ],
+    "proposed_action": "apply_measured_offset",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "VENDOR feed has a consistent negative latency offset (p50_ms: -1618.821, negative_share: 0.996493) and cross-feed alignment shows a stable median offset of 1800.0 ms with zero MAD, indicating clock skew."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 4300,
+   "steps": 4,
+   "tools": [
+    "get_feed_latency",
+    "get_cross_feed_alignment",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_feed_latency": {
+     "source": "VENDOR",
+     "day": "2026-09-04",
+     "events": 16255,
+     "p50_ms": -1618.821,
+     "p95_ms": -1376.9187,
+     "p99_ms": -1172.10378,
+     "negative_share": 0.996493,
+     "beyond_watermark_share": 0.001107,
+     "contract_freshness_p99_ms": 1500
+    },
+    "get_cross_feed_alignment": {
+     "day": "2026-09-04",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 16167,
+     "median_ms": 1800.0,
+     "mad_ms": 0.0,
+     "full_day_median_ms": 1800.0,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    },
+    "get_samples": [
+     {
+      "event_id": "VS-30000001",
+      "source": "VENDOR",
+      "symbol": "OTWA",
+      "trade_id": "P30000002",
+      "ts_exchange": "2026-09-04 10:00:02.357",
+      "ts_received": "2026-09-04 10:00:00.938",
+      "price": 11.12,
+      "qty": 1014.0,
+      "side": "B",
+      "latency_ms": -1419.293
+     },
+     {
+      "event_id": "VS-30000002",
+      "source": "VENDOR",
+      "symbol": "GAWL",
+      "trade_id": "P30000003",
+      "ts_exchange": "2026-09-04 10:00:02.814",
+      "ts_received": "2026-09-04 10:00:01.216",
+      "price": 9.39,
+      "qty": 2008.0,
+      "side": "S",
+      "latency_ms": -1597.609
+     },
+     {
+      "event_id": "VS-30000003",
+      "source": "VENDOR",
+      "symbol": "DUNE",
+      "trade_id": "P30000001",
+      "ts_exchange": "2026-09-04 10:00:02.276",
+      "ts_received": "2026-09-04 10:00:01.223",
+      "price": 12.1,
+      "qty": 1550.0,
+      "side": "S",
+      "latency_ms": -1053.266
+     },
+     {
+      "event_id": "VS-30000004",
+      "source": "VENDOR",
+      "symbol": "SNOW",
+      "trade_id": "P30000004",
+      "ts_exchange": "2026-09-04 10:00:03.403",
+      "ts_received": "2026-09-04 10:00:01.805",
+      "price": 17.53,
+      "qty": 787.0,
+      "side": "B",
+      "latency_ms": -1598.067
+     },
+     {
+      "event_id": "VS-30000005",
+      "source": "VENDOR",
+      "symbol": "SNOW",
+      "trade_id": "P30000005",
+      "ts_exchange": "2026-09-04 10:00:03.523",
+      "ts_received": "2026-09-04 10:00:01.949",
+      "price": 8.49,
+      "qty": 1015.0,
+      "side": "S",
+      "latency_ms": -1573.884
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 4,
+    "evidence": 4,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-05",
+   "kind": "real",
+   "engine": "rules",
+   "label": {
+    "category": "bad_print",
+    "action": "hold_and_await_cancel"
+   },
+   "why": null,
+   "check_id": "price_band",
+   "summary": "price_band fired on MURR (PRIMARY)",
+   "result": {
+    "category": "bad_print",
+    "confidence": 0.9,
+    "evidence": [
+     "outside the band on PRIMARY"
+    ],
+    "proposed_action": "hold_and_await_cancel",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: price_band -> bad_print."
+   },
+   "model": "runbook",
+   "ms": 0.1,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-05",
+   "kind": "real",
+   "engine": "agent",
+   "label": {
+    "category": "bad_print",
+    "action": "hold_and_await_cancel"
+   },
+   "why": null,
+   "check_id": "price_band",
+   "summary": "price_band fired on MURR (PRIMARY)",
+   "result": {
+    "category": "bad_print",
+    "confidence": 1.0,
+    "evidence": [
+     "PRIMARY trade P30006645 price 43.99 versus five_minute_median_before 4.4",
+     "ALT by_venue outside_band 0 max_deviation 0.004545"
+    ],
+    "proposed_action": "hold_and_await_cancel",
+    "affects_trading": true,
+    "instruments_to_gate": [
+     "MURR"
+    ],
+    "summary": "PRIMARY feed printed trade P30006645 at 43.99, which is an outlier far outside the five-minute median of 4.4 and not confirmed by independent venue ALT."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 3557,
+   "steps": 3,
+   "tools": [
+    "get_samples",
+    "get_price_context",
+    "get_cross_feed_alignment",
+    "get_book_state"
+   ],
+   "retrieved": {
+    "get_samples": [
+     {
+      "event_id": "PE-20261014-0006645",
+      "source": "PRIMARY",
+      "symbol": "MURR",
+      "trade_id": "P30006645",
+      "ts_exchange": "2026-10-14 12:28:59.412",
+      "ts_received": "2026-10-14 12:28:59.413",
+      "price": 43.99,
+      "qty": 2000.0,
+      "side": "B",
+      "flags": "cancel_while_held;"
+     },
+     {
+      "event_id": "PE-20261014-0006580",
+      "source": "PRIMARY",
+      "symbol": "MURR",
+      "trade_id": "P30006580",
+      "ts_exchange": "2026-10-14 12:27:32.757",
+      "ts_received": "2026-10-14 12:27:32.759",
+      "price": 4.4,
+      "qty": 310.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "PE-20261014-0006594",
+      "source": "PRIMARY",
+      "symbol": "MURR",
+      "trade_id": "P30006594",
+      "ts_exchange": "2026-10-14 12:27:50.055",
+      "ts_received": "2026-10-14 12:27:50.056",
+      "price": 4.4,
+      "qty": 2571.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "PE-20261014-0006600",
+      "source": "PRIMARY",
+      "symbol": "MURR",
+      "trade_id": "P30006600",
+      "ts_exchange": "2026-10-14 12:27:57.991",
+      "ts_received": "2026-10-14 12:27:57.993",
+      "price": 4.43,
+      "qty": 686.0,
+      "side": "B",
+      "flags": ""
+     },
+     {
+      "event_id": "PE-20261014-0006620",
+      "source": "PRIMARY",
+      "symbol": "MURR",
+      "trade_id": "P30006620",
+      "ts_exchange": "2026-10-14 12:28:26.732",
+      "ts_received": "2026-10-14 12:28:26.734",
+      "price": 4.42,
+      "qty": 590.0,
+      "side": "B",
+      "flags": ""
+     }
+    ],
+    "get_price_context": {
+     "instrument": "INS-013",
+     "symbol": "MURR",
+     "around": "2026-10-14 12:28:59.412",
+     "five_minute_median_before": 4.4,
+     "band": 0.08,
+     "by_venue": {
+      "ALT": {
+       "prints": 5,
+       "outside_band": 0,
+       "max_deviation": 0.004545,
+       "median_price": 4.39
+      },
+      "PRIMARY": {
+       "prints": 20,
+       "outside_band": 1,
+       "max_deviation": 8.997727,
+       "median_price": 4.42
+      }
+     },
+     "median_price_1_to_10_min_after": 4.42,
+     "cancels_received": 2
+    },
+    "get_cross_feed_alignment": {
+     "day": "2026-10-14",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 16167,
+     "median_ms": 1800.0,
+     "mad_ms": 0.0,
+     "full_day_median_ms": 1800.0,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    },
+    "get_book_state": {
+     "venue": "PRIMARY",
+     "day": "2026-10-14",
+     "quotes_examined": 1200,
+     "crossed_quotes": 0
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 2,
+    "evidence": 2,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-05",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "bad_print",
+    "action": "hold_and_await_cancel"
+   },
+   "why": null,
+   "check_id": "price_band",
+   "summary": "price_band fired on OTWA (PRIMARY)",
+   "result": {
+    "category": "bad_print",
+    "confidence": 0.9,
+    "evidence": [
+     "outside the band on PRIMARY"
+    ],
+    "proposed_action": "hold_and_await_cancel",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: price_band -> bad_print."
+   },
+   "model": "runbook",
+   "ms": 0.11,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-05",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "bad_print",
+    "action": "hold_and_await_cancel"
+   },
+   "why": null,
+   "check_id": "price_band",
+   "summary": "price_band fired on OTWA (PRIMARY)",
+   "result": {
+    "category": "bad_print",
+    "confidence": 1.0,
+    "evidence": [
+     "price 43.99 vs five_minute_median_before 4.4",
+     "max_deviation 8.997727 on PRIMARY",
+     "ALT median_price 4.39 vs PRIMARY median_price 4.42"
+    ],
+    "proposed_action": "hold_and_await_cancel",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "A single trade on PRIMARY at 43.99 is significantly outside the 4.40 median price, while ALT shows no such move. This is a bad print."
+   },
+   "model": "gemini-3.1-flash-lite",
+   "ms": 7035,
+   "steps": 4,
+   "tools": [
+    "get_samples",
+    "get_price_context",
+    "get_cross_feed_alignment"
+   ],
+   "retrieved": {
+    "get_samples": [
+     {
+      "event_id": "PE-20261014-0006645",
+      "source": "PRIMARY",
+      "symbol": "OTWA",
+      "trade_id": "P30006645",
+      "ts_exchange": "2026-09-24 12:28:59.412",
+      "ts_received": "2026-09-24 12:28:59.413",
+      "price": 43.99,
+      "qty": 2000.0,
+      "side": "B",
+      "flags": "cancel_while_held;"
+     },
+     {
+      "event_id": "PE-20261014-0006580",
+      "source": "PRIMARY",
+      "symbol": "OTWA",
+      "trade_id": "P30006580",
+      "ts_exchange": "2026-09-24 12:27:32.757",
+      "ts_received": "2026-09-24 12:27:32.759",
+      "price": 4.4,
+      "qty": 310.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "PE-20261014-0006594",
+      "source": "PRIMARY",
+      "symbol": "OTWA",
+      "trade_id": "P30006594",
+      "ts_exchange": "2026-09-24 12:27:50.055",
+      "ts_received": "2026-09-24 12:27:50.056",
+      "price": 4.4,
+      "qty": 2571.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "PE-20261014-0006600",
+      "source": "PRIMARY",
+      "symbol": "OTWA",
+      "trade_id": "P30006600",
+      "ts_exchange": "2026-09-24 12:27:57.991",
+      "ts_received": "2026-09-24 12:27:57.993",
+      "price": 4.43,
+      "qty": 686.0,
+      "side": "B",
+      "flags": ""
+     },
+     {
+      "event_id": "PE-20261014-0006620",
+      "source": "PRIMARY",
+      "symbol": "OTWA",
+      "trade_id": "P30006620",
+      "ts_exchange": "2026-09-24 12:28:26.732",
+      "ts_received": "2026-09-24 12:28:26.734",
+      "price": 4.42,
+      "qty": 590.0,
+      "side": "B",
+      "flags": ""
+     }
+    ],
+    "get_price_context": {
+     "instrument": "INS-015",
+     "symbol": "OTWA",
+     "around": "2026-09-24 12:28:59.412",
+     "five_minute_median_before": 4.4,
+     "band": 0.08,
+     "by_venue": {
+      "ALT": {
+       "prints": 5,
+       "outside_band": 0,
+       "max_deviation": 0.004545,
+       "median_price": 4.39
+      },
+      "PRIMARY": {
+       "prints": 20,
+       "outside_band": 1,
+       "max_deviation": 8.997727,
+       "median_price": 4.42
+      }
+     },
+     "median_price_1_to_10_min_after": 4.42,
+     "cancels_received": 2
+    },
+    "get_cross_feed_alignment": {
+     "day": "2026-09-24",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 16167,
+     "median_ms": 1800.0,
+     "mad_ms": 0.0,
+     "full_day_median_ms": 1800.0,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-05",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "bad_print",
+    "action": "hold_and_await_cancel"
+   },
+   "why": null,
+   "check_id": "price_band",
+   "summary": "price_band fired on PEEL (PRIMARY)",
+   "result": {
+    "category": "bad_print",
+    "confidence": 0.9,
+    "evidence": [
+     "outside the band on PRIMARY"
+    ],
+    "proposed_action": "hold_and_await_cancel",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: price_band -> bad_print."
+   },
+   "model": "runbook",
+   "ms": 0.1,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-05",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "bad_print",
+    "action": "hold_and_await_cancel"
+   },
+   "why": null,
+   "check_id": "price_band",
+   "summary": "price_band fired on PEEL (PRIMARY)",
+   "result": {
+    "category": "bad_print",
+    "confidence": 1.0,
+    "evidence": [
+     "trade_id P30006645 price 43.99 outside band 0.08",
+     "five_minute_median_before 4.4",
+     "max_deviation 8.997727",
+     "cancels_received 2"
+    ],
+    "proposed_action": "hold_and_await_cancel",
+    "affects_trading": true,
+    "instruments_to_gate": [
+     "PEEL"
+    ],
+    "summary": "Primary feed printed trade P30006645 at 43.99, far outside the 5-minute median of 4.4 and the band, with subsequent cancels received, indicating a bad print."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 40336,
+   "steps": 5,
+   "tools": [
+    "get_samples",
+    "get_price_context",
+    "get_cross_feed_alignment",
+    "get_book_state"
+   ],
+   "retrieved": {
+    "get_samples": [
+     {
+      "event_id": "PE-20261014-0006645",
+      "source": "PRIMARY",
+      "symbol": "PEEL",
+      "trade_id": "P30006645",
+      "ts_exchange": "2026-09-04 12:28:59.412",
+      "ts_received": "2026-09-04 12:28:59.413",
+      "price": 43.99,
+      "qty": 2000.0,
+      "side": "B",
+      "flags": "cancel_while_held;"
+     },
+     {
+      "event_id": "PE-20261014-0006580",
+      "source": "PRIMARY",
+      "symbol": "PEEL",
+      "trade_id": "P30006580",
+      "ts_exchange": "2026-09-04 12:27:32.757",
+      "ts_received": "2026-09-04 12:27:32.759",
+      "price": 4.4,
+      "qty": 310.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "PE-20261014-0006594",
+      "source": "PRIMARY",
+      "symbol": "PEEL",
+      "trade_id": "P30006594",
+      "ts_exchange": "2026-09-04 12:27:50.055",
+      "ts_received": "2026-09-04 12:27:50.056",
+      "price": 4.4,
+      "qty": 2571.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "PE-20261014-0006600",
+      "source": "PRIMARY",
+      "symbol": "PEEL",
+      "trade_id": "P30006600",
+      "ts_exchange": "2026-09-04 12:27:57.991",
+      "ts_received": "2026-09-04 12:27:57.993",
+      "price": 4.43,
+      "qty": 686.0,
+      "side": "B",
+      "flags": ""
+     },
+     {
+      "event_id": "PE-20261014-0006620",
+      "source": "PRIMARY",
+      "symbol": "PEEL",
+      "trade_id": "P30006620",
+      "ts_exchange": "2026-09-04 12:28:26.732",
+      "ts_received": "2026-09-04 12:28:26.734",
+      "price": 4.42,
+      "qty": 590.0,
+      "side": "B",
+      "flags": ""
+     }
+    ],
+    "get_price_context": {
+     "instrument": "INS-016",
+     "symbol": "PEEL",
+     "around": "2026-09-04 12:28:59.412",
+     "five_minute_median_before": 4.4,
+     "band": 0.08,
+     "by_venue": {
+      "ALT": {
+       "prints": 5,
+       "outside_band": 0,
+       "max_deviation": 0.004545,
+       "median_price": 4.39
+      },
+      "PRIMARY": {
+       "prints": 20,
+       "outside_band": 1,
+       "max_deviation": 8.997727,
+       "median_price": 4.42
+      }
+     },
+     "median_price_1_to_10_min_after": 4.42,
+     "cancels_received": 2
+    },
+    "get_cross_feed_alignment": {
+     "day": "2026-09-04",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 16167,
+     "median_ms": 1800.0,
+     "mad_ms": 0.0,
+     "full_day_median_ms": 1800.0,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    },
+    "get_book_state": {
+     "venue": "PRIMARY",
+     "day": "2026-09-04",
+     "quotes_examined": 1200,
+     "crossed_quotes": 0
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 4,
+    "evidence": 4,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-06",
+   "kind": "real",
+   "engine": "rules",
+   "label": {
+    "category": "schema_drift",
+    "action": "propose_contract_version"
+   },
+   "why": null,
+   "check_id": "schema",
+   "summary": "schema: ALT trades partition does not conform to its contract",
+   "result": {
+    "category": "schema_drift",
+    "confidence": 0.9,
+    "evidence": [
+     "missing ['qty'], unknown ['size', 'liquidity_flag']"
+    ],
+    "proposed_action": "propose_contract_version",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: schema -> schema_drift."
+   },
+   "model": "runbook",
+   "ms": 0.09,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-06",
+   "kind": "real",
+   "engine": "agent",
+   "label": {
+    "category": "schema_drift",
+    "action": "propose_contract_version"
+   },
+   "why": null,
+   "check_id": "schema",
+   "summary": "schema: ALT trades partition does not conform to its contract",
+   "result": {
+    "category": "schema_drift",
+    "confidence": 1.0,
+    "evidence": [
+     "missing_required: ['qty']",
+     "unknown_fields: ['size', 'liquidity_flag']",
+     "conforms: false"
+    ],
+    "proposed_action": "propose_contract_version",
+    "affects_trading": false,
+    "instruments_to_gate": [],
+    "summary": "ALT trades partition does not conform to its contract, missing field 'qty' and containing unknown fields 'size' and 'liquidity_flag'."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 3589,
+   "steps": 3,
+   "tools": [
+    "get_contract_diff",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_contract_diff": {
+     "contract": "alt.trades",
+     "version_in_force": 1,
+     "partition": "ALT/trades/2026-10-15.parquet",
+     "fields_observed": [
+      "event_id",
+      "event_type",
+      "symbol",
+      "trade_id",
+      "ts_exchange",
+      "ts_received",
+      "price",
+      "size",
+      "side",
+      "cancels_trade_id",
+      "liquidity_flag"
+     ],
+     "missing_required": [
+      "qty"
+     ],
+     "unknown_fields": [
+      "size",
+      "liquidity_flag"
+     ],
+     "conforms": false
+    },
+    "get_samples": [
+     {
+      "event_id": "AE-20261015-0000001",
+      "file": "ALT/trades/2026-10-15.parquet",
+      "raw_row": 0,
+      "symbol": "IRON",
+      "ts_exchange": "2026-10-15 10:00:00.774"
+     },
+     {
+      "event_id": "AE-20261015-0000002",
+      "file": "ALT/trades/2026-10-15.parquet",
+      "raw_row": 1,
+      "symbol": "GAWL",
+      "ts_exchange": "2026-10-15 10:00:12.131"
+     },
+     {
+      "event_id": "AE-20261015-0000003",
+      "file": "ALT/trades/2026-10-15.parquet",
+      "raw_row": 2,
+      "symbol": "IRON",
+      "ts_exchange": "2026-10-15 10:00:15.942"
+     },
+     {
+      "event_id": "AE-20261015-0000004",
+      "file": "ALT/trades/2026-10-15.parquet",
+      "raw_row": 3,
+      "symbol": "ALBA",
+      "ts_exchange": "2026-10-15 10:00:17.178"
+     },
+     {
+      "event_id": "AE-20261015-0000005",
+      "file": "ALT/trades/2026-10-15.parquet",
+      "raw_row": 4,
+      "symbol": "EYRE",
+      "ts_exchange": "2026-10-15 10:00:21.475"
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-06",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "schema_drift",
+    "action": "propose_contract_version"
+   },
+   "why": null,
+   "check_id": "schema",
+   "summary": "schema: ALT trades partition does not conform to its contract",
+   "result": {
+    "category": "schema_drift",
+    "confidence": 0.9,
+    "evidence": [
+     "missing ['qty'], unknown ['size', 'liquidity_flag']"
+    ],
+    "proposed_action": "propose_contract_version",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: schema -> schema_drift."
+   },
+   "model": "runbook",
+   "ms": 0.1,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-06",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "schema_drift",
+    "action": "propose_contract_version"
+   },
+   "why": null,
+   "check_id": "schema",
+   "summary": "schema: ALT trades partition does not conform to its contract",
+   "result": {
+    "category": "schema_drift",
+    "confidence": 1.0,
+    "evidence": [
+     "missing_required: [\"qty\"]",
+     "unknown_fields: [\"size\", \"liquidity_flag\"]",
+     "conforms: false"
+    ],
+    "proposed_action": "propose_contract_version",
+    "affects_trading": false,
+    "instruments_to_gate": [],
+    "summary": "ALT trades partition does not conform to its data contract, missing required field 'qty' and containing unknown fields 'size' and 'liquidity_flag'."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 2926,
+   "steps": 3,
+   "tools": [
+    "get_contract_diff",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_contract_diff": {
+     "contract": "alt.trades",
+     "version_in_force": 1,
+     "partition": "ALT/trades/2026-09-25.parquet",
+     "fields_observed": [
+      "event_id",
+      "event_type",
+      "symbol",
+      "trade_id",
+      "ts_exchange",
+      "ts_received",
+      "price",
+      "size",
+      "side",
+      "cancels_trade_id",
+      "liquidity_flag"
+     ],
+     "missing_required": [
+      "qty"
+     ],
+     "unknown_fields": [
+      "size",
+      "liquidity_flag"
+     ],
+     "conforms": false
+    },
+    "get_samples": [
+     {
+      "event_id": "AE-20261015-0000001",
+      "file": "ALT/trades/2026-09-25.parquet",
+      "raw_row": 0,
+      "symbol": "HUON",
+      "ts_exchange": "2026-09-25 10:00:00.774"
+     },
+     {
+      "event_id": "AE-20261015-0000002",
+      "file": "ALT/trades/2026-09-25.parquet",
+      "raw_row": 1,
+      "symbol": "GAWL",
+      "ts_exchange": "2026-09-25 10:00:12.131"
+     },
+     {
+      "event_id": "AE-20261015-0000003",
+      "file": "ALT/trades/2026-09-25.parquet",
+      "raw_row": 2,
+      "symbol": "HUON",
+      "ts_exchange": "2026-09-25 10:00:15.942"
+     },
+     {
+      "event_id": "AE-20261015-0000004",
+      "file": "ALT/trades/2026-09-25.parquet",
+      "raw_row": 3,
+      "symbol": "ALBA",
+      "ts_exchange": "2026-09-25 10:00:17.178"
+     },
+     {
+      "event_id": "AE-20261015-0000005",
+      "file": "ALT/trades/2026-09-25.parquet",
+      "raw_row": 4,
+      "symbol": "GAWL",
+      "ts_exchange": "2026-09-25 10:00:21.475"
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-06",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "schema_drift",
+    "action": "propose_contract_version"
+   },
+   "why": null,
+   "check_id": "schema",
+   "summary": "schema: ALT trades partition does not conform to its contract",
+   "result": {
+    "category": "schema_drift",
+    "confidence": 0.9,
+    "evidence": [
+     "missing ['qty'], unknown ['size', 'liquidity_flag']"
+    ],
+    "proposed_action": "propose_contract_version",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: schema -> schema_drift."
+   },
+   "model": "runbook",
+   "ms": 0.1,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-06",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "schema_drift",
+    "action": "propose_contract_version"
+   },
+   "why": null,
+   "check_id": "schema",
+   "summary": "schema: ALT trades partition does not conform to its contract",
+   "result": {
+    "category": "schema_drift",
+    "confidence": 1.0,
+    "evidence": [
+     "missing_required: ['qty']",
+     "unknown_fields: ['size', 'liquidity_flag']",
+     "conforms: false"
+    ],
+    "proposed_action": "propose_contract_version",
+    "affects_trading": false,
+    "instruments_to_gate": [],
+    "summary": "ALT trades partition does not conform to its data contract, missing required field 'qty' and containing unknown fields 'size' and 'liquidity_flag'."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 3209,
+   "steps": 3,
+   "tools": [
+    "get_contract_diff",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_contract_diff": {
+     "contract": "alt.trades",
+     "version_in_force": 1,
+     "partition": "ALT/trades/2026-09-05.parquet",
+     "fields_observed": [
+      "event_id",
+      "event_type",
+      "symbol",
+      "trade_id",
+      "ts_exchange",
+      "ts_received",
+      "price",
+      "size",
+      "side",
+      "cancels_trade_id",
+      "liquidity_flag"
+     ],
+     "missing_required": [
+      "qty"
+     ],
+     "unknown_fields": [
+      "size",
+      "liquidity_flag"
+     ],
+     "conforms": false
+    },
+    "get_samples": [
+     {
+      "event_id": "AE-20261015-0000001",
+      "file": "ALT/trades/2026-09-05.parquet",
+      "raw_row": 0,
+      "symbol": "FLIN",
+      "ts_exchange": "2026-09-05 10:00:00.774"
+     },
+     {
+      "event_id": "AE-20261015-0000002",
+      "file": "ALT/trades/2026-09-05.parquet",
+      "raw_row": 1,
+      "symbol": "GAWL",
+      "ts_exchange": "2026-09-05 10:00:12.131"
+     },
+     {
+      "event_id": "AE-20261015-0000003",
+      "file": "ALT/trades/2026-09-05.parquet",
+      "raw_row": 2,
+      "symbol": "FLIN",
+      "ts_exchange": "2026-09-05 10:00:15.942"
+     },
+     {
+      "event_id": "AE-20261015-0000004",
+      "file": "ALT/trades/2026-09-05.parquet",
+      "raw_row": 3,
+      "symbol": "ALBA",
+      "ts_exchange": "2026-09-05 10:00:17.178"
+     },
+     {
+      "event_id": "AE-20261015-0000005",
+      "file": "ALT/trades/2026-09-05.parquet",
+      "raw_row": 4,
+      "symbol": "CALD",
+      "ts_exchange": "2026-09-05 10:00:21.475"
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-07",
+   "kind": "real",
+   "engine": "rules",
+   "label": {
+    "category": "crossed_book",
+    "action": "exclude_quotes"
+   },
+   "why": null,
+   "check_id": "crossed_book",
+   "summary": "crossed_book fired on ALT quotes",
+   "result": {
+    "category": "crossed_book",
+    "confidence": 0.9,
+    "evidence": [
+     "744 crossed quotes"
+    ],
+    "proposed_action": "exclude_quotes",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: crossed_book -> crossed_book."
+   },
+   "model": "runbook",
+   "ms": 0.09,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-07",
+   "kind": "real",
+   "engine": "agent",
+   "label": {
+    "category": "crossed_book",
+    "action": "exclude_quotes"
+   },
+   "why": null,
+   "check_id": "crossed_book",
+   "summary": "crossed_book fired on ALT quotes",
+   "result": {
+    "category": "crossed_book",
+    "confidence": 1.0,
+    "evidence": [
+     "crossed_quotes: 744",
+     "other_venue_crossed: 0",
+     "example: {\"symbol\": \"NAMO\", \"ts_exchange\": \"2026-10-16 13:10:00.002\", \"bid\": 27.49, \"ask\": 27.48}",
+     "symbols: [\"BRIG\", \"IRON\", \"NAMO\", \"QUIL\"]"
+    ],
+    "proposed_action": "exclude_quotes",
+    "affects_trading": true,
+    "instruments_to_gate": [
+     "BRIG",
+     "IRON",
+     "NAMO",
+     "QUIL"
+    ],
+    "summary": "ALT venue quotes are crossed (bid >= ask) across 744 instances for symbols BRIG, IRON, NAMO, and QUIL. Proposing to exclude quotes from ALT."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 2916,
+   "steps": 3,
+   "tools": [
+    "get_book_state",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_book_state": {
+     "venue": "ALT",
+     "day": "2026-10-16",
+     "quotes_examined": 4918,
+     "crossed_quotes": 744,
+     "crossed_from": "2026-10-16 13:10:00.002",
+     "crossed_to": "2026-10-16 13:40:51.629",
+     "symbols": [
+      "BRIG",
+      "IRON",
+      "NAMO",
+      "QUIL"
+     ],
+     "example": {
+      "symbol": "NAMO",
+      "ts_exchange": "2026-10-16 13:10:00.002",
+      "bid": 27.49,
+      "ask": 27.48
+     },
+     "other_venue_crossed": 0
+    },
+    "get_samples": [
+     {
+      "event_id": "AQ-20261016-0022801",
+      "symbol": "NAMO",
+      "ts_exchange": "2026-10-16 13:10:00.002",
+      "ts_received": "2026-10-16 13:10:00.005",
+      "bid": 27.49,
+      "ask": 27.48
+     },
+     {
+      "event_id": "AQ-20261016-0022805",
+      "symbol": "BRIG",
+      "ts_exchange": "2026-10-16 13:10:00.675",
+      "ts_received": "2026-10-16 13:10:00.676",
+      "bid": 32.02,
+      "ask": 32.01
+     },
+     {
+      "event_id": "AQ-20261016-0022812",
+      "symbol": "QUIL",
+      "ts_exchange": "2026-10-16 13:10:01.283",
+      "ts_received": "2026-10-16 13:10:01.288",
+      "bid": 69.43,
+      "ask": 69.41
+     },
+     {
+      "event_id": "AQ-20261016-0022816",
+      "symbol": "IRON",
+      "ts_exchange": "2026-10-16 13:10:01.583",
+      "ts_received": "2026-10-16 13:10:01.585",
+      "bid": 41.83,
+      "ask": 41.81
+     },
+     {
+      "event_id": "AQ-20261016-0022824",
+      "symbol": "NAMO",
+      "ts_exchange": "2026-10-16 13:10:10.182",
+      "ts_received": "2026-10-16 13:10:10.185",
+      "bid": 27.5,
+      "ask": 27.49
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 4,
+    "evidence": 4,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-07",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "crossed_book",
+    "action": "exclude_quotes"
+   },
+   "why": null,
+   "check_id": "crossed_book",
+   "summary": "crossed_book fired on ALT quotes",
+   "result": {
+    "category": "crossed_book",
+    "confidence": 0.9,
+    "evidence": [
+     "744 crossed quotes"
+    ],
+    "proposed_action": "exclude_quotes",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: crossed_book -> crossed_book."
+   },
+   "model": "runbook",
+   "ms": 0.17,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-07",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "crossed_book",
+    "action": "exclude_quotes"
+   },
+   "why": null,
+   "check_id": "crossed_book",
+   "summary": "crossed_book fired on ALT quotes",
+   "result": {
+    "category": "crossed_book",
+    "confidence": 1.0,
+    "evidence": [
+     "744 crossed_quotes found on venue ALT",
+     "example DUNE bid 27.49 > ask 27.48 at 2026-09-26 13:10:00.002",
+     "other_venue_crossed: 0 indicates this is isolated to ALT"
+    ],
+    "proposed_action": "exclude_quotes",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Venue ALT is publishing crossed quotes across multiple symbols (TWEE, HUON, DUNE, ROPE). No other venues show this behavior, indicating an issue with ALT's feed. Quotes should be excluded."
+   },
+   "model": "gemini-3.1-flash-lite",
+   "ms": 5458,
+   "steps": 4,
+   "tools": [
+    "get_book_state",
+    "get_price_context",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_book_state": {
+     "venue": "ALT",
+     "day": "2026-09-26",
+     "quotes_examined": 4918,
+     "crossed_quotes": 744,
+     "crossed_from": "2026-09-26 13:10:00.002",
+     "crossed_to": "2026-09-26 13:40:51.629",
+     "symbols": [
+      "TWEE",
+      "HUON",
+      "DUNE",
+      "ROPE"
+     ],
+     "example": {
+      "symbol": "DUNE",
+      "ts_exchange": "2026-09-26 13:10:00.002",
+      "bid": 27.49,
+      "ask": 27.48
+     },
+     "other_venue_crossed": 0
+    },
+    "get_price_context": {
+     "note": "no instrument in this alert"
+    },
+    "get_samples": [
+     {
+      "event_id": "AQ-20261016-0022801",
+      "symbol": "DUNE",
+      "ts_exchange": "2026-09-26 13:10:00.002",
+      "ts_received": "2026-09-26 13:10:00.005",
+      "bid": 27.49,
+      "ask": 27.48
+     },
+     {
+      "event_id": "AQ-20261016-0022805",
+      "symbol": "TWEE",
+      "ts_exchange": "2026-09-26 13:10:00.675",
+      "ts_received": "2026-09-26 13:10:00.676",
+      "bid": 32.02,
+      "ask": 32.01
+     },
+     {
+      "event_id": "AQ-20261016-0022812",
+      "symbol": "ROPE",
+      "ts_exchange": "2026-09-26 13:10:01.283",
+      "ts_received": "2026-09-26 13:10:01.288",
+      "bid": 69.43,
+      "ask": 69.41
+     },
+     {
+      "event_id": "AQ-20261016-0022816",
+      "symbol": "HUON",
+      "ts_exchange": "2026-09-26 13:10:01.583",
+      "ts_received": "2026-09-26 13:10:01.585",
+      "bid": 41.83,
+      "ask": 41.81
+     },
+     {
+      "event_id": "AQ-20261016-0022824",
+      "symbol": "DUNE",
+      "ts_exchange": "2026-09-26 13:10:10.182",
+      "ts_received": "2026-09-26 13:10:10.185",
+      "bid": 27.5,
+      "ask": 27.49
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-07",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "crossed_book",
+    "action": "exclude_quotes"
+   },
+   "why": null,
+   "check_id": "crossed_book",
+   "summary": "crossed_book fired on ALT quotes",
+   "result": {
+    "category": "crossed_book",
+    "confidence": 0.9,
+    "evidence": [
+     "744 crossed quotes"
+    ],
+    "proposed_action": "exclude_quotes",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: crossed_book -> crossed_book."
+   },
+   "model": "runbook",
+   "ms": 0.1,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-07",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "crossed_book",
+    "action": "exclude_quotes"
+   },
+   "why": null,
+   "check_id": "crossed_book",
+   "summary": "crossed_book fired on ALT quotes",
+   "result": {
+    "category": "crossed_book",
+    "confidence": 1.0,
+    "evidence": [
+     "crossed_quotes: 744",
+     "example: {\"symbol\": \"BRIG\", \"ts_exchange\": \"2026-09-06 13:10:00.002\", \"bid\": 27.49, \"ask\": 27.48}",
+     "other_venue_crossed: 0"
+    ],
+    "proposed_action": "exclude_quotes",
+    "affects_trading": true,
+    "instruments_to_gate": [
+     "ALBA",
+     "FLIN",
+     "BRIG",
+     "JARR"
+    ],
+    "summary": "ALT quotes show 744 instances of crossed books where the bid is above the ask across symbols like BRIG, ALBA, JARR, and FLIN, while no other venues show crossed books. We should exclude quotes from ALT."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 4361,
+   "steps": 3,
+   "tools": [
+    "get_samples",
+    "get_book_state"
+   ],
+   "retrieved": {
+    "get_samples": [
+     {
+      "event_id": "AQ-20261016-0022801",
+      "symbol": "BRIG",
+      "ts_exchange": "2026-09-06 13:10:00.002",
+      "ts_received": "2026-09-06 13:10:00.005",
+      "bid": 27.49,
+      "ask": 27.48
+     },
+     {
+      "event_id": "AQ-20261016-0022805",
+      "symbol": "ALBA",
+      "ts_exchange": "2026-09-06 13:10:00.675",
+      "ts_received": "2026-09-06 13:10:00.676",
+      "bid": 32.02,
+      "ask": 32.01
+     },
+     {
+      "event_id": "AQ-20261016-0022812",
+      "symbol": "JARR",
+      "ts_exchange": "2026-09-06 13:10:01.283",
+      "ts_received": "2026-09-06 13:10:01.288",
+      "bid": 69.43,
+      "ask": 69.41
+     },
+     {
+      "event_id": "AQ-20261016-0022816",
+      "symbol": "FLIN",
+      "ts_exchange": "2026-09-06 13:10:01.583",
+      "ts_received": "2026-09-06 13:10:01.585",
+      "bid": 41.83,
+      "ask": 41.81
+     },
+     {
+      "event_id": "AQ-20261016-0022824",
+      "symbol": "BRIG",
+      "ts_exchange": "2026-09-06 13:10:10.182",
+      "ts_received": "2026-09-06 13:10:10.185",
+      "bid": 27.5,
+      "ask": 27.49
+     }
+    ],
+    "get_book_state": {
+     "venue": "ALT",
+     "day": "2026-09-06",
+     "quotes_examined": 4918,
+     "crossed_quotes": 744,
+     "crossed_from": "2026-09-06 13:10:00.002",
+     "crossed_to": "2026-09-06 13:40:51.629",
+     "symbols": [
+      "ALBA",
+      "FLIN",
+      "BRIG",
+      "JARR"
+     ],
+     "example": {
+      "symbol": "BRIG",
+      "ts_exchange": "2026-09-06 13:10:00.002",
+      "bid": 27.49,
+      "ask": 27.48
+     },
+     "other_venue_crossed": 0
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-08",
+   "kind": "real",
+   "engine": "rules",
+   "label": {
+    "category": "late_reference_data",
+    "action": "hold_until_reference_arrives"
+   },
+   "why": null,
+   "check_id": "symbol_known",
+   "summary": "symbol_known: events for EYRA, a symbol the master in force does not list",
+   "result": {
+    "category": "late_reference_data",
+    "confidence": 0.9,
+    "evidence": [
+     "master arrived 2026-10-16 10:07:30.000"
+    ],
+    "proposed_action": "hold_until_reference_arrives",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: symbol_known -> late_reference_data."
+   },
+   "model": "runbook",
+   "ms": 0.1,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-INC-08",
+   "kind": "real",
+   "engine": "agent",
+   "label": {
+    "category": "late_reference_data",
+    "action": "hold_until_reference_arrives"
+   },
+   "why": null,
+   "check_id": "symbol_known",
+   "summary": "symbol_known: events for EYRA, a symbol the master in force does not list",
+   "result": {
+    "category": "late_reference_data",
+    "confidence": 1.0,
+    "evidence": [
+     "symbol_master_arrived_at: 2026-10-16 10:07:30.000",
+     "contract_arrives_by: 09:30",
+     "events_held_unknown: 36 for symbol EYRA"
+    ],
+    "proposed_action": "hold_until_reference_arrives",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Symbol EYRA events arrived starting at 10:01:33, but the symbol master did not arrive until 10:07:30, missing the 09:30 contract deadline."
+   },
+   "model": "gemini-3.1-flash-lite",
+   "ms": 4512,
+   "steps": 3,
+   "tools": [
+    "get_reference_data",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_reference_data": {
+     "day": "2026-10-16",
+     "symbol_master_arrived_at": "2026-10-16 10:07:30.000",
+     "contract_arrives_by": "09:30",
+     "symbols_traded": 20,
+     "symbol": "EYRA",
+     "events_today": 1922,
+     "events_held_unknown": 36,
+     "instrument_after_master": "INS-005",
+     "previous_symbol_for_instrument": "EYRE"
+    },
+    "get_samples": [
+     {
+      "event_id": "PE-20261016-0000067",
+      "source": "PRIMARY",
+      "symbol": "EYRA",
+      "trade_id": "P50000067",
+      "ts_exchange": "2026-10-16 10:01:33.812",
+      "ts_received": "2026-10-16 10:01:33.814",
+      "price": 3.17,
+      "qty": 234.0,
+      "side": "S",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000078",
+      "source": "PRIMARY",
+      "symbol": "EYRA",
+      "trade_id": "P50000078",
+      "ts_exchange": "2026-10-16 10:01:50.235",
+      "ts_received": "2026-10-16 10:01:50.235",
+      "price": 3.2,
+      "qty": 384.0,
+      "side": "B",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000089",
+      "source": "PRIMARY",
+      "symbol": "EYRA",
+      "trade_id": "P50000089",
+      "ts_exchange": "2026-10-16 10:02:04.586",
+      "ts_received": "2026-10-16 10:02:04.586",
+      "price": 3.17,
+      "qty": 90.0,
+      "side": "S",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000107",
+      "source": "PRIMARY",
+      "symbol": "EYRA",
+      "trade_id": "P50000107",
+      "ts_exchange": "2026-10-16 10:02:28.130",
+      "ts_received": "2026-10-16 10:02:28.131",
+      "price": 3.2,
+      "qty": 376.0,
+      "side": "B",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000142",
+      "source": "PRIMARY",
+      "symbol": "EYRA",
+      "trade_id": "P50000142",
+      "ts_exchange": "2026-10-16 10:03:11.286",
+      "ts_received": "2026-10-16 10:03:11.288",
+      "price": 3.2,
+      "qty": 316.0,
+      "side": "B",
+      "flags": "held_unknown_symbol;"
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-08",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "late_reference_data",
+    "action": "hold_until_reference_arrives"
+   },
+   "why": null,
+   "check_id": "symbol_known",
+   "summary": "symbol_known: events for GAWZ, a symbol the master in force does not list",
+   "result": {
+    "category": "late_reference_data",
+    "confidence": 0.9,
+    "evidence": [
+     "master arrived 2026-09-26 10:07:30.000"
+    ],
+    "proposed_action": "hold_until_reference_arrives",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: symbol_known -> late_reference_data."
+   },
+   "model": "runbook",
+   "ms": 0.07,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-INC-08",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "late_reference_data",
+    "action": "hold_until_reference_arrives"
+   },
+   "why": null,
+   "check_id": "symbol_known",
+   "summary": "symbol_known: events for GAWZ, a symbol the master in force does not list",
+   "result": {
+    "category": "late_reference_data",
+    "confidence": 1.0,
+    "evidence": [
+     "symbol_master_arrived_at: 2026-09-26 10:07:30.000",
+     "contract_arrives_by: 09:30",
+     "events_held_unknown: 36"
+    ],
+    "proposed_action": "hold_until_reference_arrives",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Symbol GAWZ events arrived starting at 10:01:33, but the symbol master did not arrive until 10:07:30, missing the 09:30 deadline."
+   },
+   "model": "gemini-3.1-flash-lite",
+   "ms": 16710,
+   "steps": 3,
+   "tools": [
+    "get_reference_data",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_reference_data": {
+     "day": "2026-09-26",
+     "symbol_master_arrived_at": "2026-09-26 10:07:30.000",
+     "contract_arrives_by": "09:30",
+     "symbols_traded": 20,
+     "symbol": "GAWZ",
+     "events_today": 1922,
+     "events_held_unknown": 36,
+     "instrument_after_master": "INS-007",
+     "previous_symbol_for_instrument": "GAWL"
+    },
+    "get_samples": [
+     {
+      "event_id": "PE-20261016-0000067",
+      "source": "PRIMARY",
+      "symbol": "GAWZ",
+      "trade_id": "P50000067",
+      "ts_exchange": "2026-09-26 10:01:33.812",
+      "ts_received": "2026-09-26 10:01:33.814",
+      "price": 3.17,
+      "qty": 234.0,
+      "side": "S",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000078",
+      "source": "PRIMARY",
+      "symbol": "GAWZ",
+      "trade_id": "P50000078",
+      "ts_exchange": "2026-09-26 10:01:50.235",
+      "ts_received": "2026-09-26 10:01:50.235",
+      "price": 3.2,
+      "qty": 384.0,
+      "side": "B",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000089",
+      "source": "PRIMARY",
+      "symbol": "GAWZ",
+      "trade_id": "P50000089",
+      "ts_exchange": "2026-09-26 10:02:04.586",
+      "ts_received": "2026-09-26 10:02:04.586",
+      "price": 3.17,
+      "qty": 90.0,
+      "side": "S",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000107",
+      "source": "PRIMARY",
+      "symbol": "GAWZ",
+      "trade_id": "P50000107",
+      "ts_exchange": "2026-09-26 10:02:28.130",
+      "ts_received": "2026-09-26 10:02:28.131",
+      "price": 3.2,
+      "qty": 376.0,
+      "side": "B",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000142",
+      "source": "PRIMARY",
+      "symbol": "GAWZ",
+      "trade_id": "P50000142",
+      "ts_exchange": "2026-09-26 10:03:11.286",
+      "ts_received": "2026-09-26 10:03:11.288",
+      "price": 3.2,
+      "qty": 316.0,
+      "side": "B",
+      "flags": "held_unknown_symbol;"
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-08",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "late_reference_data",
+    "action": "hold_until_reference_arrives"
+   },
+   "why": null,
+   "check_id": "symbol_known",
+   "summary": "symbol_known: events for CALX, a symbol the master in force does not list",
+   "result": {
+    "category": "late_reference_data",
+    "confidence": 0.9,
+    "evidence": [
+     "master arrived 2026-09-06 10:07:30.000"
+    ],
+    "proposed_action": "hold_until_reference_arrives",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: symbol_known -> late_reference_data."
+   },
+   "model": "runbook",
+   "ms": 0.09,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-INC-08",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "late_reference_data",
+    "action": "hold_until_reference_arrives"
+   },
+   "why": null,
+   "check_id": "symbol_known",
+   "summary": "symbol_known: events for CALX, a symbol the master in force does not list",
+   "result": {
+    "category": "late_reference_data",
+    "confidence": 1.0,
+    "evidence": [
+     "symbol_master_arrived_at: 2026-09-06 10:07:30.000",
+     "contract_arrives_by: 09:30",
+     "events_held_unknown: 36"
+    ],
+    "proposed_action": "hold_until_reference_arrives",
+    "affects_trading": true,
+    "instruments_to_gate": [
+     "CALX"
+    ],
+    "summary": "Events for symbol CALX arrived before its reference data was published (symbol master arrived at 10:07:30.000 vs contract deadline 09:30), resulting in held unknown events. We should hold until reference data arrives."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 3803,
+   "steps": 3,
+   "tools": [
+    "get_reference_data",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_reference_data": {
+     "day": "2026-09-06",
+     "symbol_master_arrived_at": "2026-09-06 10:07:30.000",
+     "contract_arrives_by": "09:30",
+     "symbols_traded": 20,
+     "symbol": "CALX",
+     "events_today": 1922,
+     "events_held_unknown": 36,
+     "instrument_after_master": "INS-003",
+     "previous_symbol_for_instrument": "CALD"
+    },
+    "get_samples": [
+     {
+      "event_id": "PE-20261016-0000067",
+      "source": "PRIMARY",
+      "symbol": "CALX",
+      "trade_id": "P50000067",
+      "ts_exchange": "2026-09-06 10:01:33.812",
+      "ts_received": "2026-09-06 10:01:33.814",
+      "price": 3.17,
+      "qty": 234.0,
+      "side": "S",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000078",
+      "source": "PRIMARY",
+      "symbol": "CALX",
+      "trade_id": "P50000078",
+      "ts_exchange": "2026-09-06 10:01:50.235",
+      "ts_received": "2026-09-06 10:01:50.235",
+      "price": 3.2,
+      "qty": 384.0,
+      "side": "B",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000089",
+      "source": "PRIMARY",
+      "symbol": "CALX",
+      "trade_id": "P50000089",
+      "ts_exchange": "2026-09-06 10:02:04.586",
+      "ts_received": "2026-09-06 10:02:04.586",
+      "price": 3.17,
+      "qty": 90.0,
+      "side": "S",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000107",
+      "source": "PRIMARY",
+      "symbol": "CALX",
+      "trade_id": "P50000107",
+      "ts_exchange": "2026-09-06 10:02:28.130",
+      "ts_received": "2026-09-06 10:02:28.131",
+      "price": 3.2,
+      "qty": 376.0,
+      "side": "B",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000142",
+      "source": "PRIMARY",
+      "symbol": "CALX",
+      "trade_id": "P50000142",
+      "ts_exchange": "2026-09-06 10:03:11.286",
+      "ts_received": "2026-09-06 10:03:11.288",
+      "price": 3.2,
+      "qty": 316.0,
+      "side": "B",
+      "flags": "held_unknown_symbol;"
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-CHK-01",
+   "kind": "real",
+   "engine": "rules",
+   "label": {
+    "category": "genuine_move",
+    "action": "no_action"
+   },
+   "why": null,
+   "check_id": "price_band",
+   "summary": "price_band fired on KOSC (PRIMARY and ALT)",
+   "result": {
+    "category": "genuine_move",
+    "confidence": 0.9,
+    "evidence": [
+     "outside the band on ALT, PRIMARY"
+    ],
+    "proposed_action": "no_action",
+    "affects_trading": false,
+    "instruments_to_gate": [],
+    "summary": "Runbook: price_band -> genuine_move."
+   },
+   "model": "runbook",
+   "ms": 0.09,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "real-CHK-01",
+   "kind": "real",
+   "engine": "agent",
+   "label": {
+    "category": "genuine_move",
+    "action": "no_action"
+   },
+   "why": null,
+   "check_id": "price_band",
+   "summary": "price_band fired on KOSC (PRIMARY and ALT)",
+   "result": {
+    "category": "genuine_move",
+    "confidence": 0.95,
+    "evidence": [
+     "five_minute_median_before: 16.11",
+     "median_price_1_to_10_min_after: 17.61",
+     "ALT prints outside_band: 2",
+     "PRIMARY prints outside_band: 10"
+    ],
+    "proposed_action": "no_action",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Price shifted from ~16.11 to ~17.61 on KOSC and sustained afterwards, confirmed by both PRIMARY and ALT venues, indicating a genuine move rather than a bad print."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 5408,
+   "steps": 5,
+   "tools": [
+    "get_samples",
+    "get_price_context",
+    "get_cross_feed_alignment",
+    "get_book_state"
+   ],
+   "retrieved": {
+    "get_samples": [
+     {
+      "event_id": "PE-20261013-0008166",
+      "source": "PRIMARY",
+      "symbol": "KOSC",
+      "trade_id": "P20008166",
+      "ts_exchange": "2026-10-13 13:02:30.875",
+      "ts_received": "2026-10-13 13:02:30.876",
+      "price": 17.53,
+      "qty": 423.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008204",
+      "source": "PRIMARY",
+      "symbol": "KOSC",
+      "trade_id": "P20008204",
+      "ts_exchange": "2026-10-13 13:03:09.534",
+      "ts_received": "2026-10-13 13:03:09.536",
+      "price": 17.56,
+      "qty": 430.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008215",
+      "source": "PRIMARY",
+      "symbol": "KOSC",
+      "trade_id": "P20008215",
+      "ts_exchange": "2026-10-13 13:03:20.779",
+      "ts_received": "2026-10-13 13:03:20.782",
+      "price": 17.57,
+      "qty": 45.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008228",
+      "source": "PRIMARY",
+      "symbol": "KOSC",
+      "trade_id": "P20008228",
+      "ts_exchange": "2026-10-13 13:03:30.009",
+      "ts_received": "2026-10-13 13:03:30.011",
+      "price": 17.6,
+      "qty": 1642.0,
+      "side": "B",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008233",
+      "source": "PRIMARY",
+      "symbol": "KOSC",
+      "trade_id": "P20008233",
+      "ts_exchange": "2026-10-13 13:03:34.196",
+      "ts_received": "2026-10-13 13:03:34.197",
+      "price": 17.58,
+      "qty": 180.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     }
+    ],
+    "get_price_context": {
+     "instrument": "INS-011",
+     "symbol": "KOSC",
+     "around": "2026-10-13 13:02:30.875",
+     "five_minute_median_before": 16.11,
+     "band": 0.08,
+     "by_venue": {
+      "ALT": {
+       "prints": 2,
+       "outside_band": 2,
+       "max_deviation": 0.090627,
+       "median_price": 17.55
+      },
+      "PRIMARY": {
+       "prints": 18,
+       "outside_band": 10,
+       "max_deviation": 0.092489,
+       "median_price": 17.535
+      }
+     },
+     "median_price_1_to_10_min_after": 17.61,
+     "cancels_received": 0
+    },
+    "get_cross_feed_alignment": {
+     "day": "2026-10-13",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 15500,
+     "median_ms": 0.0,
+     "mad_ms": 0.0,
+     "full_day_median_ms": 0.0,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    },
+    "get_book_state": {
+     "venue": "PRIMARY",
+     "day": "2026-10-13",
+     "quotes_examined": 1203,
+     "crossed_quotes": 0
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 4,
+    "evidence": 4,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-CHK-01",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "genuine_move",
+    "action": "no_action"
+   },
+   "why": null,
+   "check_id": "price_band",
+   "summary": "price_band fired on LACH (PRIMARY and ALT)",
+   "result": {
+    "category": "genuine_move",
+    "confidence": 0.9,
+    "evidence": [
+     "outside the band on ALT, PRIMARY"
+    ],
+    "proposed_action": "no_action",
+    "affects_trading": false,
+    "instruments_to_gate": [],
+    "summary": "Runbook: price_band -> genuine_move."
+   },
+   "model": "runbook",
+   "ms": 0.09,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var1-CHK-01",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "genuine_move",
+    "action": "no_action"
+   },
+   "why": null,
+   "check_id": "price_band",
+   "summary": "price_band fired on LACH (PRIMARY and ALT)",
+   "result": {
+    "category": "genuine_move",
+    "confidence": 0.95,
+    "evidence": [
+     "five_minute_median_before was 16.11",
+     "median_price_1_to_10_min_after was 17.61",
+     "ALT outside_band was 2",
+     "PRIMARY outside_band was 10"
+    ],
+    "proposed_action": "no_action",
+    "affects_trading": true,
+    "instruments_to_gate": [
+     "LACH"
+    ],
+    "summary": "Price band alert on LACH fired due to a large price jump from 16.11 to 17.61, but the move is confirmed by both PRIMARY and ALT feeds and sustained afterwards, indicating a genuine market move."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 5085,
+   "steps": 5,
+   "tools": [
+    "get_samples",
+    "get_price_context",
+    "get_cross_feed_alignment",
+    "get_book_state"
+   ],
+   "retrieved": {
+    "get_samples": [
+     {
+      "event_id": "PE-20261013-0008166",
+      "source": "PRIMARY",
+      "symbol": "LACH",
+      "trade_id": "P20008166",
+      "ts_exchange": "2026-09-23 13:02:30.875",
+      "ts_received": "2026-09-23 13:02:30.876",
+      "price": 17.53,
+      "qty": 423.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008204",
+      "source": "PRIMARY",
+      "symbol": "LACH",
+      "trade_id": "P20008204",
+      "ts_exchange": "2026-09-23 13:03:09.534",
+      "ts_received": "2026-09-23 13:03:09.536",
+      "price": 17.56,
+      "qty": 430.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008215",
+      "source": "PRIMARY",
+      "symbol": "LACH",
+      "trade_id": "P20008215",
+      "ts_exchange": "2026-09-23 13:03:20.779",
+      "ts_received": "2026-09-23 13:03:20.782",
+      "price": 17.57,
+      "qty": 45.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008228",
+      "source": "PRIMARY",
+      "symbol": "LACH",
+      "trade_id": "P20008228",
+      "ts_exchange": "2026-09-23 13:03:30.009",
+      "ts_received": "2026-09-23 13:03:30.011",
+      "price": 17.6,
+      "qty": 1642.0,
+      "side": "B",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008233",
+      "source": "PRIMARY",
+      "symbol": "LACH",
+      "trade_id": "P20008233",
+      "ts_exchange": "2026-09-23 13:03:34.196",
+      "ts_received": "2026-09-23 13:03:34.197",
+      "price": 17.58,
+      "qty": 180.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     }
+    ],
+    "get_price_context": {
+     "instrument": "INS-012",
+     "symbol": "LACH",
+     "around": "2026-09-23 13:02:30.875",
+     "five_minute_median_before": 16.11,
+     "band": 0.08,
+     "by_venue": {
+      "ALT": {
+       "prints": 2,
+       "outside_band": 2,
+       "max_deviation": 0.090627,
+       "median_price": 17.55
+      },
+      "PRIMARY": {
+       "prints": 18,
+       "outside_band": 10,
+       "max_deviation": 0.092489,
+       "median_price": 17.535
+      }
+     },
+     "median_price_1_to_10_min_after": 17.61,
+     "cancels_received": 0
+    },
+    "get_cross_feed_alignment": {
+     "day": "2026-09-23",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 15500,
+     "median_ms": 0.0,
+     "mad_ms": 0.0,
+     "full_day_median_ms": 0.0,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    },
+    "get_book_state": {
+     "venue": "PRIMARY",
+     "day": "2026-09-23",
+     "quotes_examined": 1203,
+     "crossed_quotes": 0
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 4,
+    "evidence": 4,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-CHK-01",
+   "kind": "variant",
+   "engine": "rules",
+   "label": {
+    "category": "genuine_move",
+    "action": "no_action"
+   },
+   "why": null,
+   "check_id": "price_band",
+   "summary": "price_band fired on SNOW (PRIMARY and ALT)",
+   "result": {
+    "category": "genuine_move",
+    "confidence": 0.9,
+    "evidence": [
+     "outside the band on ALT, PRIMARY"
+    ],
+    "proposed_action": "no_action",
+    "affects_trading": false,
+    "instruments_to_gate": [],
+    "summary": "Runbook: price_band -> genuine_move."
+   },
+   "model": "runbook",
+   "ms": 0.09,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "var2-CHK-01",
+   "kind": "variant",
+   "engine": "agent",
+   "label": {
+    "category": "genuine_move",
+    "action": "no_action"
+   },
+   "why": null,
+   "check_id": "price_band",
+   "summary": "price_band fired on SNOW (PRIMARY and ALT)",
+   "result": {
+    "category": "genuine_move",
+    "confidence": 0.9,
+    "evidence": [
+     "five_minute_median_before: 16.11",
+     "median_price_1_to_10_min_after: 17.61",
+     "ALT prints outside_band: 2"
+    ],
+    "proposed_action": "no_action",
+    "affects_trading": false,
+    "instruments_to_gate": [],
+    "summary": "The price move on SNOW from ~16.11 to ~17.61 is confirmed by both PRIMARY and ALT feeds, and the price sustained at the new level, indicating a genuine market move."
+   },
+   "model": "gemini-3.1-flash-lite",
+   "ms": 14949,
+   "steps": 3,
+   "tools": [
+    "get_samples",
+    "get_price_context",
+    "get_cross_feed_alignment",
+    "get_book_state",
+    "get_feed_activity"
+   ],
+   "retrieved": {
+    "get_samples": [
+     {
+      "event_id": "PE-20261013-0008166",
+      "source": "PRIMARY",
+      "symbol": "SNOW",
+      "trade_id": "P20008166",
+      "ts_exchange": "2026-09-03 13:02:30.875",
+      "ts_received": "2026-09-03 13:02:30.876",
+      "price": 17.53,
+      "qty": 423.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008204",
+      "source": "PRIMARY",
+      "symbol": "SNOW",
+      "trade_id": "P20008204",
+      "ts_exchange": "2026-09-03 13:03:09.534",
+      "ts_received": "2026-09-03 13:03:09.536",
+      "price": 17.56,
+      "qty": 430.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008215",
+      "source": "PRIMARY",
+      "symbol": "SNOW",
+      "trade_id": "P20008215",
+      "ts_exchange": "2026-09-03 13:03:20.779",
+      "ts_received": "2026-09-03 13:03:20.782",
+      "price": 17.57,
+      "qty": 45.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008228",
+      "source": "PRIMARY",
+      "symbol": "SNOW",
+      "trade_id": "P20008228",
+      "ts_exchange": "2026-09-03 13:03:30.009",
+      "ts_received": "2026-09-03 13:03:30.011",
+      "price": 17.6,
+      "qty": 1642.0,
+      "side": "B",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008233",
+      "source": "PRIMARY",
+      "symbol": "SNOW",
+      "trade_id": "P20008233",
+      "ts_exchange": "2026-09-03 13:03:34.196",
+      "ts_received": "2026-09-03 13:03:34.197",
+      "price": 17.58,
+      "qty": 180.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     }
+    ],
+    "get_price_context": {
+     "instrument": "INS-019",
+     "symbol": "SNOW",
+     "around": "2026-09-03 13:02:30.875",
+     "five_minute_median_before": 16.11,
+     "band": 0.08,
+     "by_venue": {
+      "ALT": {
+       "prints": 2,
+       "outside_band": 2,
+       "max_deviation": 0.090627,
+       "median_price": 17.55
+      },
+      "PRIMARY": {
+       "prints": 18,
+       "outside_band": 10,
+       "max_deviation": 0.092489,
+       "median_price": 17.535
+      }
+     },
+     "median_price_1_to_10_min_after": 17.61,
+     "cancels_received": 0
+    },
+    "get_cross_feed_alignment": {
+     "day": "2026-09-03",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 15500,
+     "median_ms": 0.0,
+     "mad_ms": 0.0,
+     "full_day_median_ms": 0.0,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    },
+    "get_book_state": {
+     "venue": "PRIMARY",
+     "day": "2026-09-03",
+     "quotes_examined": 1203,
+     "crossed_quotes": 0
+    },
+    "get_feed_activity": {
+     "day": "2026-09-03",
+     "window": [
+      "2026-09-03 12:59:30.875",
+      "2026-09-03 13:05:30.875"
+     ],
+     "per_minute": [
+      {
+       "minute": "12:59",
+       "primary_direct": 22,
+       "vendor": 22,
+       "vendor_only": 0,
+       "alt": 9
+      },
+      {
+       "minute": "13:00",
+       "primary_direct": 36,
+       "vendor": 36,
+       "vendor_only": 0,
+       "alt": 14
+      },
+      {
+       "minute": "13:01",
+       "primary_direct": 43,
+       "vendor": 43,
+       "vendor_only": 0,
+       "alt": 16
+      },
+      {
+       "minute": "13:02",
+       "primary_direct": 54,
+       "vendor": 54,
+       "vendor_only": 0,
+       "alt": 18
+      },
+      {
+       "minute": "13:03",
+       "primary_direct": 55,
+       "vendor": 55,
+       "vendor_only": 0,
+       "alt": 16
+      },
+      {
+       "minute": "13:04",
+       "primary_direct": 39,
+       "vendor": 39,
+       "vendor_only": 0,
+       "alt": 15
+      },
+      {
+       "minute": "13:05",
+       "primary_direct": 20,
+       "vendor": 20,
+       "vendor_only": 0,
+       "alt": 8
+      }
+     ]
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "hard-H1-own-clock",
+   "kind": "hard",
+   "engine": "rules",
+   "label": {
+    "category": "unknown",
+    "action": "escalate_to_human"
+   },
+   "why": "The vendor agrees with PRIMARY to the millisecond; the fault is our receive clock.",
+   "check_id": "negative_latency",
+   "summary": "negative_latency: VENDOR events stamped as received before they happened",
+   "result": {
+    "category": "clock_skew",
+    "confidence": 0.9,
+    "evidence": [
+     "median offset 0.6 ms"
+    ],
+    "proposed_action": "apply_measured_offset",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: negative_latency -> clock_skew."
+   },
+   "model": "runbook",
+   "ms": 0.12,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": false,
+    "action_ok": false,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": true,
+    "abstained": false,
+    "passed": false
+   }
+  },
+  {
+   "case_id": "hard-H1-own-clock",
+   "kind": "hard",
+   "engine": "agent",
+   "label": {
+    "category": "unknown",
+    "action": "escalate_to_human"
+   },
+   "why": "The vendor agrees with PRIMARY to the millisecond; the fault is our receive clock.",
+   "check_id": "negative_latency",
+   "summary": "negative_latency: VENDOR events stamped as received before they happened",
+   "result": {
+    "category": "clock_skew",
+    "confidence": 1.0,
+    "evidence": [
+     "median_ms: 0.6",
+     "mad_ms: 0.4",
+     "negative_share: 0.62"
+    ],
+    "proposed_action": "apply_measured_offset",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Vendor stream trades show consistent clock skew relative to received time (negative_share: 0.62, mad_ms: 0.4). Cross-feed alignment with PRIMARY confirms exchange times match (median 0.6ms, MAD 0.4ms) but feed timestamps are offset."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 21184,
+   "steps": 5,
+   "tools": [
+    "get_samples",
+    "get_feed_latency",
+    "get_cross_feed_alignment",
+    "get_duplicate_stats"
+   ],
+   "retrieved": {
+    "get_samples": [
+     {
+      "event_id": "VS-30000001",
+      "source": "VENDOR",
+      "symbol": "OTWA",
+      "trade_id": "P30000002",
+      "ts_exchange": "2026-10-14 10:00:02.357",
+      "ts_received": "2026-10-14 10:00:00.938",
+      "price": 11.12,
+      "qty": 1014.0,
+      "side": "B",
+      "latency_ms": -41.0
+     },
+     {
+      "event_id": "VS-30000002",
+      "source": "VENDOR",
+      "symbol": "GAWL",
+      "trade_id": "P30000003",
+      "ts_exchange": "2026-10-14 10:00:02.814",
+      "ts_received": "2026-10-14 10:00:01.216",
+      "price": 9.39,
+      "qty": 2008.0,
+      "side": "S",
+      "latency_ms": -41.0
+     },
+     {
+      "event_id": "VS-30000003",
+      "source": "VENDOR",
+      "symbol": "DUNE",
+      "trade_id": "P30000001",
+      "ts_exchange": "2026-10-14 10:00:02.276",
+      "ts_received": "2026-10-14 10:00:01.223",
+      "price": 12.1,
+      "qty": 1550.0,
+      "side": "S",
+      "latency_ms": -41.0
+     },
+     {
+      "event_id": "VS-30000004",
+      "source": "VENDOR",
+      "symbol": "KOSC",
+      "trade_id": "P30000004",
+      "ts_exchange": "2026-10-14 10:00:03.403",
+      "ts_received": "2026-10-14 10:00:01.805",
+      "price": 17.53,
+      "qty": 787.0,
+      "side": "B",
+      "latency_ms": -41.0
+     },
+     {
+      "event_id": "VS-30000005",
+      "source": "VENDOR",
+      "symbol": "SNOW",
+      "trade_id": "P30000005",
+      "ts_exchange": "2026-10-14 10:00:03.523",
+      "ts_received": "2026-10-14 10:00:01.949",
+      "price": 8.49,
+      "qty": 1015.0,
+      "side": "S",
+      "latency_ms": -41.0
+     }
+    ],
+    "get_feed_latency": {
+     "source": "VENDOR",
+     "day": "2026-10-14",
+     "events": 16255,
+     "p50_ms": -38.0,
+     "p95_ms": -1376.9187,
+     "p99_ms": -1172.10378,
+     "negative_share": 0.62,
+     "beyond_watermark_share": 0.001107,
+     "contract_freshness_p99_ms": 1500
+    },
+    "get_cross_feed_alignment": {
+     "day": "2026-10-14",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 16167,
+     "median_ms": 0.6,
+     "mad_ms": 0.4,
+     "full_day_median_ms": 0.5,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    },
+    "get_duplicate_stats": {
+     "venue": "PRIMARY",
+     "day": "2026-10-14",
+     "repeated_trade_ids": 0
+    }
+   },
+   "grade": {
+    "category_ok": false,
+    "action_ok": false,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": true,
+    "abstained": false,
+    "passed": false
+   }
+  },
+  {
+   "case_id": "hard-H2-id-collision",
+   "kind": "hard",
+   "engine": "rules",
+   "label": {
+    "category": "unknown",
+    "action": "escalate_to_human"
+   },
+   "why": "Copies differ in price and quantity: the venue reused trade ids. Dropping them drops real trades.",
+   "check_id": "duplicate_trade_id",
+   "summary": "duplicate_trade_id fired 218 times on ALT trades",
+   "result": {
+    "category": "duplicate_resend",
+    "confidence": 0.9,
+    "evidence": [
+     "218 copies beyond the first"
+    ],
+    "proposed_action": "dedupe_keep_first",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: duplicate_trade_id -> duplicate_resend."
+   },
+   "model": "runbook",
+   "ms": 0.17,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": false,
+    "action_ok": false,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": true,
+    "abstained": false,
+    "passed": false
+   }
+  },
+  {
+   "case_id": "hard-H2-id-collision",
+   "kind": "hard",
+   "engine": "agent",
+   "label": {
+    "category": "unknown",
+    "action": "escalate_to_human"
+   },
+   "why": "Copies differ in price and quantity: the venue reused trade ids. Dropping them drops real trades.",
+   "check_id": "duplicate_trade_id",
+   "summary": "duplicate_trade_id fired 218 times on ALT trades",
+   "result": {
+    "category": "unknown",
+    "confidence": 0.4,
+    "evidence": [
+     "same_price_and_qty_on_every_copy: false",
+     "repeated_trade_ids: 218"
+    ],
+    "proposed_action": "escalate_to_human",
+    "affects_trading": false,
+    "instruments_to_gate": [],
+    "summary": "Alert indicates duplicate trade ids on ALT trades, but duplicate stats show same_price_and_qty_on_every_copy is false, meaning it is not a standard duplicate resend. Escalating to human."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 5150,
+   "steps": 5,
+   "tools": [
+    "get_duplicate_stats",
+    "get_samples",
+    "get_contract_diff",
+    "get_feed_activity"
+   ],
+   "retrieved": {
+    "get_duplicate_stats": {
+     "venue": "ALT",
+     "day": "2026-10-13",
+     "repeated_trade_ids": 218,
+     "copies_beyond_first": 218,
+     "repeat_received_from": "2026-10-13 11:42:10.500",
+     "repeat_received_to": "2026-10-13 11:42:10.934",
+     "original_exchange_times_from": "2026-10-13 11:27:12.159",
+     "original_exchange_times_to": "2026-10-13 11:42:07.853",
+     "same_price_and_qty_on_every_copy": false,
+     "example": {
+      "trade_id": "A20001371",
+      "event_ids": [
+       "AE-20261013-0001371",
+       "AE-20261013-0001589"
+      ]
+     }
+    },
+    "get_samples": [
+     {
+      "event_id": "AE-20261013-0001589",
+      "source": "ALT",
+      "symbol": "ALBA",
+      "trade_id": "A20001371",
+      "ts_exchange": "2026-10-13 11:27:12.159",
+      "ts_received": "2026-10-13 11:42:10.500",
+      "price": 18.24,
+      "qty": 1157.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001590",
+      "source": "ALT",
+      "symbol": "LACH",
+      "trade_id": "A20001372",
+      "ts_exchange": "2026-10-13 11:27:12.387",
+      "ts_received": "2026-10-13 11:42:10.502",
+      "price": 4.59,
+      "qty": 2200.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001591",
+      "source": "ALT",
+      "symbol": "BRIG",
+      "trade_id": "A20001373",
+      "ts_exchange": "2026-10-13 11:27:13.237",
+      "ts_received": "2026-10-13 11:42:10.504",
+      "price": 32.19,
+      "qty": 2335.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001592",
+      "source": "ALT",
+      "symbol": "IRON",
+      "trade_id": "A20001374",
+      "ts_exchange": "2026-10-13 11:27:23.701",
+      "ts_received": "2026-10-13 11:42:10.506",
+      "price": 42.12,
+      "qty": 1936.0,
+      "side": "B",
+      "flags": ""
+     },
+     {
+      "event_id": "AE-20261013-0001593",
+      "source": "ALT",
+      "symbol": "QUIL",
+      "trade_id": "A20001375",
+      "ts_exchange": "2026-10-13 11:27:26.505",
+      "ts_received": "2026-10-13 11:42:10.508",
+      "price": 70.64,
+      "qty": 1729.0,
+      "side": "S",
+      "flags": ""
+     }
+    ],
+    "get_contract_diff": {
+     "contract": "alt.trades",
+     "version_in_force": 1,
+     "partition": "ALT/trades/2026-10-13.parquet",
+     "fields_observed": [
+      "event_id",
+      "event_type",
+      "symbol",
+      "trade_id",
+      "ts_exchange",
+      "ts_received",
+      "price",
+      "qty",
+      "side",
+      "cancels_trade_id"
+     ],
+     "missing_required": [],
+     "unknown_fields": [],
+     "conforms": true
+    },
+    "get_feed_activity": {
+     "day": "2026-10-13",
+     "window": [
+      "2026-10-13 11:39:10.500",
+      "2026-10-13 11:45:10.500"
+     ],
+     "per_minute": [
+      {
+       "minute": "11:39",
+       "primary_direct": 30,
+       "vendor": 30,
+       "vendor_only": 0,
+       "alt": 28
+      },
+      {
+       "minute": "11:40",
+       "primary_direct": 47,
+       "vendor": 47,
+       "vendor_only": 0,
+       "alt": 30
+      },
+      {
+       "minute": "11:41",
+       "primary_direct": 43,
+       "vendor": 43,
+       "vendor_only": 0,
+       "alt": 26
+      },
+      {
+       "minute": "11:42",
+       "primary_direct": 49,
+       "vendor": 49,
+       "vendor_only": 0,
+       "alt": 14
+      },
+      {
+       "minute": "11:43",
+       "primary_direct": 39,
+       "vendor": 39,
+       "vendor_only": 0,
+       "alt": 22
+      },
+      {
+       "minute": "11:44",
+       "primary_direct": 49,
+       "vendor": 49,
+       "vendor_only": 0,
+       "alt": 19
+      },
+      {
+       "minute": "11:45",
+       "primary_direct": 9,
+       "vendor": 9,
+       "vendor_only": 0,
+       "alt": 1
+      }
+     ]
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 2,
+    "evidence": 2,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": true,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "hard-H3-halt",
+   "kind": "hard",
+   "engine": "rules",
+   "label": {
+    "category": "venue_halt",
+    "action": "no_action"
+   },
+   "why": "Every feed is silent at once: a halt. There is nothing to fill.",
+   "check_id": "feed_gap",
+   "summary": "feed_gap: PRIMARY delivered no trades for six minutes",
+   "result": {
+    "category": "feed_gap",
+    "confidence": 0.9,
+    "evidence": [
+     "201 vendor_only trades in the window"
+    ],
+    "proposed_action": "fill_from_backup_feed",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: feed_gap -> feed_gap."
+   },
+   "model": "runbook",
+   "ms": 0.13,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": false,
+    "action_ok": false,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": true,
+    "abstained": false,
+    "passed": false
+   }
+  },
+  {
+   "case_id": "hard-H3-halt",
+   "kind": "hard",
+   "engine": "agent",
+   "label": {
+    "category": "venue_halt",
+    "action": "no_action"
+   },
+   "why": "Every feed is silent at once: a halt. There is nothing to fill.",
+   "check_id": "feed_gap",
+   "summary": "feed_gap: PRIMARY delivered no trades for six minutes",
+   "result": {
+    "category": "feed_gap",
+    "confidence": 1.0,
+    "evidence": [
+     "primary_direct: 0 from minute 14:05 through 14:10",
+     "vendor: 42, 46, 34, 29, 50 during minutes 14:11 to 14:15 while primary_direct was 0"
+    ],
+    "proposed_action": "fill_from_backup_feed",
+    "affects_trading": true,
+    "instruments_to_gate": [
+     "PRIMARY"
+    ],
+    "summary": "PRIMARY direct feed delivered 0 trades between 14:05 and 14:10 while redundant feeds (vendor and alt) continued carrying trades, confirming a single feed gap."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 4953,
+   "steps": 5,
+   "tools": [
+    "get_feed_activity",
+    "get_samples",
+    "get_book_state",
+    "get_feed_latency"
+   ],
+   "retrieved": {
+    "get_feed_activity": {
+     "day": "2026-10-13",
+     "window": [
+      "2026-10-13 14:02:00.000",
+      "2026-10-13 14:19:00.000"
+     ],
+     "per_minute": [
+      {
+       "minute": "14:02",
+       "primary_direct": 39,
+       "vendor": 39,
+       "vendor_only": 0,
+       "alt": 16
+      },
+      {
+       "minute": "14:03",
+       "primary_direct": 40,
+       "vendor": 40,
+       "vendor_only": 0,
+       "alt": 25
+      },
+      {
+       "minute": "14:04",
+       "primary_direct": 40,
+       "vendor": 40,
+       "vendor_only": 0,
+       "alt": 23
+      },
+      {
+       "minute": "14:05",
+       "primary_direct": 0,
+       "vendor": 0,
+       "vendor_only": 0,
+       "alt": 0
+      },
+      {
+       "minute": "14:06",
+       "primary_direct": 0,
+       "vendor": 0,
+       "vendor_only": 0,
+       "alt": 0
+      },
+      {
+       "minute": "14:07",
+       "primary_direct": 0,
+       "vendor": 0,
+       "vendor_only": 0,
+       "alt": 0
+      },
+      {
+       "minute": "14:08",
+       "primary_direct": 0,
+       "vendor": 0,
+       "vendor_only": 0,
+       "alt": 0
+      },
+      {
+       "minute": "14:09",
+       "primary_direct": 0,
+       "vendor": 0,
+       "vendor_only": 0,
+       "alt": 0
+      },
+      {
+       "minute": "14:10",
+       "primary_direct": 0,
+       "vendor": 0,
+       "vendor_only": 0,
+       "alt": 0
+      },
+      {
+       "minute": "14:11",
+       "primary_direct": 0,
+       "vendor": 42,
+       "vendor_only": 42,
+       "alt": 15
+      },
+      {
+       "minute": "14:12",
+       "primary_direct": 0,
+       "vendor": 46,
+       "vendor_only": 46,
+       "alt": 13
+      },
+      {
+       "minute": "14:13",
+       "primary_direct": 0,
+       "vendor": 34,
+       "vendor_only": 34,
+       "alt": 19
+      },
+      {
+       "minute": "14:14",
+       "primary_direct": 0,
+       "vendor": 29,
+       "vendor_only": 29,
+       "alt": 17
+      },
+      {
+       "minute": "14:15",
+       "primary_direct": 0,
+       "vendor": 50,
+       "vendor_only": 50,
+       "alt": 19
+      },
+      {
+       "minute": "14:16",
+       "primary_direct": 35,
+       "vendor": 35,
+       "vendor_only": 0,
+       "alt": 16
+      },
+      {
+       "minute": "14:17",
+       "primary_direct": 48,
+       "vendor": 48,
+       "vendor_only": 0,
+       "alt": 17
+      },
+      {
+       "minute": "14:18",
+       "primary_direct": 48,
+       "vendor": 48,
+       "vendor_only": 0,
+       "alt": 16
+      }
+     ]
+    },
+    "get_samples": [],
+    "get_book_state": {
+     "venue": "PRIMARY",
+     "day": "2026-10-13",
+     "quotes_examined": 1200,
+     "crossed_quotes": 0
+    },
+    "get_feed_latency": {
+     "source": "PRIMARY",
+     "day": "2026-10-13",
+     "events": 15500,
+     "p50_ms": 1.196,
+     "p95_ms": 2.731,
+     "p99_ms": 3.79206,
+     "negative_share": 0.0,
+     "beyond_watermark_share": 0.000387,
+     "contract_freshness_p99_ms": 2000
+    }
+   },
+   "grade": {
+    "category_ok": false,
+    "action_ok": false,
+    "grounded": 2,
+    "evidence": 2,
+    "all_grounded": true,
+    "harmful": true,
+    "abstained": false,
+    "passed": false
+   }
+  },
+  {
+   "case_id": "hard-H4-vendor-is-not-a-venue",
+   "kind": "hard",
+   "engine": "rules",
+   "label": {
+    "category": "bad_print",
+    "action": "hold_and_await_cancel"
+   },
+   "why": "The vendor's copy of PRIMARY is not an independent venue. Two rows, one market.",
+   "check_id": "price_band",
+   "summary": "price_band fired on MURR (PRIMARY)",
+   "result": {
+    "category": "genuine_move",
+    "confidence": 0.9,
+    "evidence": [
+     "outside the band on PRIMARY, VENDOR"
+    ],
+    "proposed_action": "no_action",
+    "affects_trading": false,
+    "instruments_to_gate": [],
+    "summary": "Runbook: price_band -> genuine_move."
+   },
+   "model": "runbook",
+   "ms": 0.13,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": false,
+    "action_ok": false,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": true,
+    "abstained": false,
+    "passed": false
+   }
+  },
+  {
+   "case_id": "hard-H4-vendor-is-not-a-venue",
+   "kind": "hard",
+   "engine": "agent",
+   "label": {
+    "category": "bad_print",
+    "action": "hold_and_await_cancel"
+   },
+   "why": "The vendor's copy of PRIMARY is not an independent venue. Two rows, one market.",
+   "check_id": "price_band",
+   "summary": "price_band fired on MURR (PRIMARY)",
+   "result": {
+    "category": "bad_print",
+    "confidence": 1.0,
+    "evidence": [
+     "price: 43.99",
+     "five_minute_median_before: 4.4",
+     "ALT max_deviation: 0.004545"
+    ],
+    "proposed_action": "hold_and_await_cancel",
+    "affects_trading": true,
+    "instruments_to_gate": [
+     "MURR"
+    ],
+    "summary": "PRIMARY trade P30006645 printed at 43.99 while the 5-minute median price was 4.4, unconfirmed by independent venue ALT."
+   },
+   "model": "gemini-3.5-flash-lite",
+   "ms": 3769,
+   "steps": 3,
+   "tools": [
+    "get_samples",
+    "get_price_context",
+    "get_cross_feed_alignment"
+   ],
+   "retrieved": {
+    "get_samples": [
+     {
+      "event_id": "PE-20261014-0006645",
+      "source": "PRIMARY",
+      "symbol": "MURR",
+      "trade_id": "P30006645",
+      "ts_exchange": "2026-10-14 12:28:59.412",
+      "ts_received": "2026-10-14 12:28:59.413",
+      "price": 43.99,
+      "qty": 2000.0,
+      "side": "B",
+      "flags": "cancel_while_held;"
+     },
+     {
+      "event_id": "PE-20261014-0006580",
+      "source": "PRIMARY",
+      "symbol": "MURR",
+      "trade_id": "P30006580",
+      "ts_exchange": "2026-10-14 12:27:32.757",
+      "ts_received": "2026-10-14 12:27:32.759",
+      "price": 4.4,
+      "qty": 310.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "PE-20261014-0006594",
+      "source": "PRIMARY",
+      "symbol": "MURR",
+      "trade_id": "P30006594",
+      "ts_exchange": "2026-10-14 12:27:50.055",
+      "ts_received": "2026-10-14 12:27:50.056",
+      "price": 4.4,
+      "qty": 2571.0,
+      "side": "S",
+      "flags": ""
+     },
+     {
+      "event_id": "PE-20261014-0006600",
+      "source": "PRIMARY",
+      "symbol": "MURR",
+      "trade_id": "P30006600",
+      "ts_exchange": "2026-10-14 12:27:57.991",
+      "ts_received": "2026-10-14 12:27:57.993",
+      "price": 4.43,
+      "qty": 686.0,
+      "side": "B",
+      "flags": ""
+     },
+     {
+      "event_id": "PE-20261014-0006620",
+      "source": "PRIMARY",
+      "symbol": "MURR",
+      "trade_id": "P30006620",
+      "ts_exchange": "2026-10-14 12:28:26.732",
+      "ts_received": "2026-10-14 12:28:26.734",
+      "price": 4.42,
+      "qty": 590.0,
+      "side": "B",
+      "flags": ""
+     }
+    ],
+    "get_price_context": {
+     "instrument": "INS-013",
+     "symbol": "MURR",
+     "around": "2026-10-14 12:28:59.412",
+     "five_minute_median_before": 4.4,
+     "band": 0.08,
+     "by_venue": {
+      "ALT": {
+       "prints": 5,
+       "outside_band": 0,
+       "max_deviation": 0.004545,
+       "median_price": 4.39
+      },
+      "PRIMARY": {
+       "prints": 20,
+       "outside_band": 1,
+       "max_deviation": 8.997727,
+       "median_price": 4.42
+      },
+      "VENDOR": {
+       "prints": 20,
+       "outside_band": 1,
+       "max_deviation": 8.997727,
+       "median_price": 4.42
+      }
+     },
+     "median_price_1_to_10_min_after": 4.42,
+     "cancels_received": 2
+    },
+    "get_cross_feed_alignment": {
+     "day": "2026-10-14",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 16167,
+     "median_ms": 1800.0,
+     "mad_ms": 0.0,
+     "full_day_median_ms": 1800.0,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    }
+   },
+   "grade": {
+    "category_ok": true,
+    "action_ok": true,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": true
+   }
+  },
+  {
+   "case_id": "hard-H5-never-valid",
+   "kind": "hard",
+   "engine": "rules",
+   "label": {
+    "category": "unknown",
+    "action": "escalate_to_human"
+   },
+   "why": "The master arrived on time and no version lists the symbol: holding would wait for ever.",
+   "check_id": "symbol_known",
+   "summary": "symbol_known: events for MURR.X, a symbol the master in force does not list",
+   "result": {
+    "category": "late_reference_data",
+    "confidence": 0.9,
+    "evidence": [
+     "master arrived 2026-10-16 06:00:00.000"
+    ],
+    "proposed_action": "hold_until_reference_arrives",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Runbook: symbol_known -> late_reference_data."
+   },
+   "model": "runbook",
+   "ms": 0.18,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": false,
+    "action_ok": false,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": true,
+    "abstained": false,
+    "passed": false
+   }
+  },
+  {
+   "case_id": "hard-H5-never-valid",
+   "kind": "hard",
+   "engine": "agent",
+   "label": {
+    "category": "unknown",
+    "action": "escalate_to_human"
+   },
+   "why": "The master arrived on time and no version lists the symbol: holding would wait for ever.",
+   "check_id": "symbol_known",
+   "summary": "symbol_known: events for MURR.X, a symbol the master in force does not list",
+   "result": {
+    "category": "late_reference_data",
+    "confidence": 1.0,
+    "evidence": [
+     "symbol_master_arrived_at: 2026-10-16 06:00:00.000",
+     "events_held_unknown: 36 for MURR.X",
+     "flags: held_unknown_symbol for event_id PE-20261016-0000067"
+    ],
+    "proposed_action": "hold_until_reference_arrives",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "Events for MURR.X were received before the symbol was listed in the reference data, despite the master file arriving at 06:00:00.000. Holding until reference data is updated."
+   },
+   "model": "gemini-3.1-flash-lite",
+   "ms": 4947,
+   "steps": 3,
+   "tools": [
+    "get_reference_data",
+    "get_samples"
+   ],
+   "retrieved": {
+    "get_reference_data": {
+     "day": "2026-10-16",
+     "symbol_master_arrived_at": "2026-10-16 06:00:00.000",
+     "contract_arrives_by": "09:30",
+     "symbols_traded": 20,
+     "symbol": "MURR.X",
+     "events_today": 1922,
+     "events_held_unknown": 36,
+     "instrument_after_master": null
+    },
+    "get_samples": [
+     {
+      "event_id": "PE-20261016-0000067",
+      "source": "PRIMARY",
+      "symbol": "MURR.X",
+      "trade_id": "P50000067",
+      "ts_exchange": "2026-10-16 10:01:33.812",
+      "ts_received": "2026-10-16 10:01:33.814",
+      "price": 3.17,
+      "qty": 234.0,
+      "side": "S",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000078",
+      "source": "PRIMARY",
+      "symbol": "MURR.X",
+      "trade_id": "P50000078",
+      "ts_exchange": "2026-10-16 10:01:50.235",
+      "ts_received": "2026-10-16 10:01:50.235",
+      "price": 3.2,
+      "qty": 384.0,
+      "side": "B",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000089",
+      "source": "PRIMARY",
+      "symbol": "MURR.X",
+      "trade_id": "P50000089",
+      "ts_exchange": "2026-10-16 10:02:04.586",
+      "ts_received": "2026-10-16 10:02:04.586",
+      "price": 3.17,
+      "qty": 90.0,
+      "side": "S",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000107",
+      "source": "PRIMARY",
+      "symbol": "MURR.X",
+      "trade_id": "P50000107",
+      "ts_exchange": "2026-10-16 10:02:28.130",
+      "ts_received": "2026-10-16 10:02:28.131",
+      "price": 3.2,
+      "qty": 376.0,
+      "side": "B",
+      "flags": "held_unknown_symbol;"
+     },
+     {
+      "event_id": "PE-20261016-0000142",
+      "source": "PRIMARY",
+      "symbol": "MURR.X",
+      "trade_id": "P50000142",
+      "ts_exchange": "2026-10-16 10:03:11.286",
+      "ts_received": "2026-10-16 10:03:11.288",
+      "price": 3.2,
+      "qty": 316.0,
+      "side": "B",
+      "flags": "held_unknown_symbol;"
+     }
+    ]
+   },
+   "grade": {
+    "category_ok": false,
+    "action_ok": false,
+    "grounded": 3,
+    "evidence": 3,
+    "all_grounded": true,
+    "harmful": true,
+    "abstained": false,
+    "passed": false
+   }
+  },
+  {
+   "case_id": "hard-H6-conflicting",
+   "kind": "hard",
+   "engine": "rules",
+   "label": {
+    "category": "unknown",
+    "action": "escalate_to_human"
+   },
+   "why": "Confirmed on ALT, yet fully reversed with a cancel on PRIMARY: the evidence conflicts.",
+   "check_id": "price_band",
+   "summary": "price_band fired on KOSC (PRIMARY and ALT)",
+   "result": {
+    "category": "genuine_move",
+    "confidence": 0.9,
+    "evidence": [
+     "outside the band on ALT, PRIMARY"
+    ],
+    "proposed_action": "no_action",
+    "affects_trading": false,
+    "instruments_to_gate": [],
+    "summary": "Runbook: price_band -> genuine_move."
+   },
+   "model": "runbook",
+   "ms": 0.13,
+   "steps": 1,
+   "tools": [],
+   "retrieved": null,
+   "grade": {
+    "category_ok": false,
+    "action_ok": false,
+    "grounded": 1,
+    "evidence": 1,
+    "all_grounded": true,
+    "harmful": false,
+    "abstained": false,
+    "passed": false
+   }
+  },
+  {
+   "case_id": "hard-H6-conflicting",
+   "kind": "hard",
+   "engine": "agent",
+   "label": {
+    "category": "unknown",
+    "action": "escalate_to_human"
+   },
+   "why": "Confirmed on ALT, yet fully reversed with a cancel on PRIMARY: the evidence conflicts.",
+   "check_id": "price_band",
+   "summary": "price_band fired on KOSC (PRIMARY and ALT)",
+   "result": {
+    "category": "bad_print",
+    "confidence": 0.9,
+    "evidence": [
+     "five_minute_median_before: 16.11",
+     "median_price_1_to_10_min_after: 16.11",
+     "PRIMARY median_price: 17.535",
+     "ALT median_price: 17.55"
+    ],
+    "proposed_action": "hold_and_await_cancel",
+    "affects_trading": true,
+    "instruments_to_gate": [],
+    "summary": "KOSC experienced a price spike to ~17.55 on both PRIMARY and ALT venues, deviating significantly from the 16.11 median price before and after the event. Since both venues show the same elevated price, this is a bad print that is not confirmed by independent market activity."
+   },
+   "model": "gemini-3.1-flash-lite",
+   "ms": 7985,
+   "steps": 5,
+   "tools": [
+    "get_samples",
+    "get_price_context",
+    "get_feed_activity",
+    "get_cross_feed_alignment"
+   ],
+   "retrieved": {
+    "get_samples": [
+     {
+      "event_id": "PE-20261013-0008166",
+      "source": "PRIMARY",
+      "symbol": "KOSC",
+      "trade_id": "P20008166",
+      "ts_exchange": "2026-10-13 13:02:30.875",
+      "ts_received": "2026-10-13 13:02:30.876",
+      "price": 17.53,
+      "qty": 423.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008204",
+      "source": "PRIMARY",
+      "symbol": "KOSC",
+      "trade_id": "P20008204",
+      "ts_exchange": "2026-10-13 13:03:09.534",
+      "ts_received": "2026-10-13 13:03:09.536",
+      "price": 17.56,
+      "qty": 430.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008215",
+      "source": "PRIMARY",
+      "symbol": "KOSC",
+      "trade_id": "P20008215",
+      "ts_exchange": "2026-10-13 13:03:20.779",
+      "ts_received": "2026-10-13 13:03:20.782",
+      "price": 17.57,
+      "qty": 45.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008228",
+      "source": "PRIMARY",
+      "symbol": "KOSC",
+      "trade_id": "P20008228",
+      "ts_exchange": "2026-10-13 13:03:30.009",
+      "ts_received": "2026-10-13 13:03:30.011",
+      "price": 17.6,
+      "qty": 1642.0,
+      "side": "B",
+      "flags": "band_confirmed;"
+     },
+     {
+      "event_id": "PE-20261013-0008233",
+      "source": "PRIMARY",
+      "symbol": "KOSC",
+      "trade_id": "P20008233",
+      "ts_exchange": "2026-10-13 13:03:34.196",
+      "ts_received": "2026-10-13 13:03:34.197",
+      "price": 17.58,
+      "qty": 180.0,
+      "side": "S",
+      "flags": "band_confirmed;"
+     }
+    ],
+    "get_price_context": {
+     "instrument": "INS-011",
+     "symbol": "KOSC",
+     "around": "2026-10-13 13:02:30.875",
+     "five_minute_median_before": 16.11,
+     "band": 0.08,
+     "by_venue": {
+      "ALT": {
+       "prints": 2,
+       "outside_band": 2,
+       "max_deviation": 0.090627,
+       "median_price": 17.55
+      },
+      "PRIMARY": {
+       "prints": 18,
+       "outside_band": 10,
+       "max_deviation": 0.092489,
+       "median_price": 17.535
+      }
+     },
+     "median_price_1_to_10_min_after": 16.11,
+     "cancels_received": 1
+    },
+    "get_feed_activity": {
+     "day": "2026-10-13",
+     "window": [
+      "2026-10-13 12:59:30.875",
+      "2026-10-13 13:05:30.875"
+     ],
+     "per_minute": [
+      {
+       "minute": "12:59",
+       "primary_direct": 22,
+       "vendor": 22,
+       "vendor_only": 0,
+       "alt": 9
+      },
+      {
+       "minute": "13:00",
+       "primary_direct": 36,
+       "vendor": 36,
+       "vendor_only": 0,
+       "alt": 14
+      },
+      {
+       "minute": "13:01",
+       "primary_direct": 43,
+       "vendor": 43,
+       "vendor_only": 0,
+       "alt": 16
+      },
+      {
+       "minute": "13:02",
+       "primary_direct": 54,
+       "vendor": 54,
+       "vendor_only": 0,
+       "alt": 18
+      },
+      {
+       "minute": "13:03",
+       "primary_direct": 55,
+       "vendor": 55,
+       "vendor_only": 0,
+       "alt": 16
+      },
+      {
+       "minute": "13:04",
+       "primary_direct": 39,
+       "vendor": 39,
+       "vendor_only": 0,
+       "alt": 15
+      },
+      {
+       "minute": "13:05",
+       "primary_direct": 20,
+       "vendor": 20,
+       "vendor_only": 0,
+       "alt": 8
+      }
+     ]
+    },
+    "get_cross_feed_alignment": {
+     "day": "2026-10-13",
+     "compared": "VENDOR exchange time minus PRIMARY exchange time, same trade id",
+     "matched_trades": 15500,
+     "median_ms": 0.0,
+     "mad_ms": 0.0,
+     "full_day_median_ms": 0.0,
+     "contract_tolerance": {
+      "min_matched": 500,
+      "max_mad_ms": 20
+     }
+    }
+   },
+   "grade": {
+    "category_ok": false,
+    "action_ok": false,
+    "grounded": 4,
+    "evidence": 4,
+    "all_grounded": true,
+    "harmful": true,
+    "abstained": false,
+    "passed": false
+   }
+  }
+ ]
+}

@@ -1,0 +1,30 @@
+# Data contract: the daily symbol master.
+#
+# Instruments are identified by instrument_id, never by symbol: symbols
+# change. The master must land before the open; when it is late, events for a
+# symbol it does not yet know are held until it arrives, not guessed.
+id: ref.symbol_master
+venue: REF
+stream: symbol_master
+owner: Data Systems
+consumers:
+  - team: Execution
+    needs: Every symbol traded at the open resolves to an instrument
+  - team: Risk
+    needs: A position follows its instrument through a symbol change
+sla:
+  arrives_by: "09:30"
+key: [instrument_id, valid_from]
+versions:
+  - version: 1
+    status: approved
+    effective_from: 2026-10-01
+    approved_by: Execution, Risk
+    on_unknown_field: quarantine_partition
+    fields:
+      instrument_id: {type: string, required: true}
+      symbol:        {type: string, required: true}
+      sector:        {type: string, required: true}
+      valid_from:    {type: date, required: true}
+      valid_to:      {type: date, required: true, nullable: true}
+checks: [schema, one_symbol_per_instrument]

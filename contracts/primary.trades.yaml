@@ -1,0 +1,38 @@
+# Data contract: PRIMARY direct feed, trades.
+#
+# Agreed with the teams that consume it. A field change is a new version,
+# proposed, reviewed and approved by someone other than the proposer - never
+# an edit to this file in place.
+id: primary.trades
+venue: PRIMARY
+stream: trades
+owner: Data Systems
+consumers:
+  - team: Execution
+    needs: Bars published within 3 s of the minute; no unvalidated print reaches the signal
+  - team: Research
+    needs: Complete, restated history by 06:00 the next day; every restatement logged
+  - team: Risk
+    needs: Positions and P&L marked only on validated prices
+sla:
+  freshness_p99_ms: 2000
+  watermark_seconds: 3
+key: [trade_id]
+versions:
+  - version: 1
+    status: approved
+    effective_from: 2026-10-01
+    approved_by: Execution, Research, Risk
+    on_unknown_field: quarantine_partition
+    fields:
+      event_id:         {type: string, required: true}
+      event_type:       {type: string, required: true, enum: [trade, trade_cancel]}
+      symbol:           {type: string, required: true}
+      trade_id:         {type: string, required: true}
+      ts_exchange:      {type: timestamp, required: true}
+      ts_received:      {type: timestamp, required: true}
+      price:            {type: double, required: true, nullable_when: trade_cancel, min_exclusive: 0}
+      qty:              {type: integer, required: true, nullable_when: trade_cancel, min_exclusive: 0}
+      side:             {type: string, required: true, nullable_when: trade_cancel, enum: [B, S]}
+      cancels_trade_id: {type: string, required: true, nullable_when: trade}
+checks: [schema, duplicate_trade_id, price_band, cancel_applied, symbol_known, feed_gap]

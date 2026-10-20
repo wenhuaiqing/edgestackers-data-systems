@@ -1,0 +1,30 @@
+# Built artefacts - regenerate with scripts/build_platform.py. The build is
+# deterministic and verified against infra-azure/build.sha256.
+data/
+dist/
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Secrets
+.env
+.env.local
+*.tfvars
+!*.tfvars.example
+.terraform/
+*.tfstate
+*.tfstate.*
+tfplan
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/
+
+# Local run output
+*.log
+frontend/page-shots/

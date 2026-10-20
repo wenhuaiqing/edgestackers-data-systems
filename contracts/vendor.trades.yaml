@@ -1,0 +1,49 @@
+# Data contract: the vendor's redundant copy of PRIMARY trades.
+#
+# Its shape is the vendor's, so the contract carries the mapping onto the
+# canonical trade. Its timestamps are corrected only when the offset can be
+# measured against PRIMARY to within the stated tolerance; otherwise the feed
+# is held, not trusted.
+id: vendor.trades
+venue: VENDOR
+stream: trades
+owner: Data Systems
+consumers:
+  - team: Execution
+    needs: Fills PRIMARY's gaps within the bar's watermark
+sla:
+  freshness_p99_ms: 1500
+  watermark_seconds: 3
+key: [vendor_seq]
+mapping:
+  ticker: symbol
+  src_trade_id: trade_id
+  exch_time: ts_exchange
+  vendor_time: ts_received
+  px: price
+  vol: qty
+  aggressor: side
+  ref_trade_id: cancels_trade_id
+  msg_type: {field: event_type, values: {T: trade, X: trade_cancel}}
+clock_offset:
+  method: median difference of exchange timestamps over trades matched to PRIMARY by trade id
+  apply_when: {min_matched: 500, max_mad_ms: 20}
+versions:
+  - version: 1
+    status: approved
+    effective_from: 2026-10-01
+    approved_by: Execution
+    on_unknown_field: quarantine_partition
+    fields:
+      vendor_seq:   {type: integer, required: true}
+      msg_type:     {type: string, required: true, enum: [T, X]}
+      src_venue:    {type: string, required: true, enum: [XPRI]}
+      ticker:       {type: string, required: true}
+      src_trade_id: {type: string, required: true, nullable_when: X}
+      exch_time:    {type: timestamp, required: true}
+      vendor_time:  {type: timestamp, required: true}
+      px:           {type: double, required: true, nullable_when: X, min_exclusive: 0}
+      vol:          {type: integer, required: true, nullable_when: X, min_exclusive: 0}
+      aggressor:    {type: string, required: true, nullable_when: X, enum: [B, S]}
+      ref_trade_id: {type: string, required: true, nullable_when: T}
+checks: [schema, negative_latency, clock_offset]

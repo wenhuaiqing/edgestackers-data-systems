@@ -1,0 +1,13 @@
+**/node_modules
+**/.venv
+**/__pycache__
+.git
+data
+*.log
+.env
+frontend/page-shots
+frontend/dist
+infra-azure/.terraform
+infra-azure/*.tfstate*
+infra-azure/tfplan
+infra-azure/terraform.tfvars

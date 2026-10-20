@@ -1,0 +1,30 @@
+# Data contract: PRIMARY direct feed, top-of-book quotes.
+id: primary.quotes
+venue: PRIMARY
+stream: quotes
+owner: Data Systems
+consumers:
+  - team: Execution
+    needs: A consolidated best bid and offer each minute that is never crossed
+  - team: Research
+    needs: Fill simulation priced only on quotes that could have been traded
+sla:
+  freshness_p99_ms: 2000
+  watermark_seconds: 3
+key: [event_id]
+versions:
+  - version: 1
+    status: approved
+    effective_from: 2026-10-01
+    approved_by: Execution, Research
+    on_unknown_field: quarantine_partition
+    fields:
+      event_id:    {type: string, required: true}
+      symbol:      {type: string, required: true}
+      ts_exchange: {type: timestamp, required: true}
+      ts_received: {type: timestamp, required: true}
+      bid:         {type: double, required: true, min_exclusive: 0}
+      bid_size:    {type: integer, required: true, min_exclusive: 0}
+      ask:         {type: double, required: true, min_exclusive: 0}
+      ask_size:    {type: integer, required: true, min_exclusive: 0}
+checks: [schema, crossed_book, symbol_known]

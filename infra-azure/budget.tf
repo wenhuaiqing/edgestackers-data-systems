@@ -1,9 +1,10 @@
 # A tripwire, not a cap: Azure budgets only notify. At rest this deployment is
-# the registry (about AUD 8 a month) and pennies of vault and logs.
+# pennies of vault and logs, so AUD 3 is reached only by something unplanned,
+# such as a replica left warm.
 resource "azurerm_consumption_budget_resource_group" "main" {
   name              = "budget-${var.prefix}-monthly"
   resource_group_id = azurerm_resource_group.main.id
-  amount            = 40
+  amount            = 3
   time_grain        = "Monthly"
 
   time_period {

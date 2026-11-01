@@ -25,17 +25,12 @@ resource "azurerm_container_app" "app" {
     identity_ids = [azurerm_user_assigned_identity.app.id]
   }
 
-  # The first revision pulls straight away; without the grants in place it
-  # fails with an error that looks like a missing image.
-  depends_on = [azurerm_role_assignment.acr_pull, azurerm_role_assignment.kv_app_read]
+  # The first revision reads its secrets straight away; without the grant in
+  # place it fails with an error that looks like a missing secret.
+  depends_on = [azurerm_role_assignment.kv_app_read]
 
   lifecycle {
     ignore_changes = [workload_profile_name]
-  }
-
-  registry {
-    server   = azurerm_container_registry.main.login_server
-    identity = azurerm_user_assigned_identity.app.id
   }
 
   ingress {
@@ -66,7 +61,7 @@ resource "azurerm_container_app" "app" {
 
     container {
       name   = "frontend"
-      image  = "${azurerm_container_registry.main.login_server}/edgestackers/frontend:${var.image_tag}"
+      image  = "${var.image_repo}/frontend:${var.image_tag}"
       cpu    = 0.25
       memory = "0.5Gi"
 
@@ -78,7 +73,7 @@ resource "azurerm_container_app" "app" {
 
     container {
       name   = "backend"
-      image  = "${azurerm_container_registry.main.login_server}/edgestackers/backend:${var.image_tag}"
+      image  = "${var.image_repo}/backend:${var.image_tag}"
       # Approving a contract change re-runs the week in memory.
       cpu    = 1.0
       memory = "2Gi"

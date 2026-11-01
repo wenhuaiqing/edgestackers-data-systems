@@ -3,9 +3,9 @@ output "frontend_url" {
   value       = "https://${azurerm_container_app.app.ingress[0].fqdn}"
 }
 
-output "acr_login_server" {
-  description = "docker push target: <this>/edgestackers/{backend,frontend}:<tag>."
-  value       = azurerm_container_registry.main.login_server
+output "image_repo" {
+  description = "docker push target: <this>/{backend,frontend}:<tag>, public on GHCR."
+  value       = var.image_repo
 }
 
 output "demo_write_token" {

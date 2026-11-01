@@ -21,7 +21,7 @@ resource "azurerm_log_analytics_workspace" "main" {
 
 data "azurerm_client_config" "current" {}
 
-# ---- identity, registry, vault ---------------------------------------------
+# ---- identity and vault ----------------------------------------------------
 
 resource "azurerm_user_assigned_identity" "app" {
   name                = "id-${var.prefix}-app"
@@ -29,28 +29,11 @@ resource "azurerm_user_assigned_identity" "app" {
   resource_group_name = azurerm_resource_group.main.name
 }
 
-# Basic tier (about AUD 8 a month). The app pulls with its own identity, so no
-# registry password exists to leak.
-resource "azurerm_container_registry" "main" {
-  name                = "acr${var.prefix}${random_string.suffix.result}"
-  resource_group_name = azurerm_resource_group.main.name
-  location            = azurerm_resource_group.main.location
-  sku                 = "Basic"
-  admin_enabled       = false
-}
-
-resource "azurerm_role_assignment" "acr_pull" {
-  scope                = azurerm_container_registry.main.id
-  role_definition_name = "AcrPull"
-  principal_id         = azurerm_user_assigned_identity.app.principal_id
-}
-
-# The operator pushes from the laptop.
-resource "azurerm_role_assignment" "acr_push_self" {
-  scope                = azurerm_container_registry.main.id
-  role_definition_name = "AcrPush"
-  principal_id         = data.azurerm_client_config.current.object_id
-}
+# No registry of its own. The images are public on GitHub Container Registry
+# (var.image_repo): an Azure registry's Basic tier is about AUD 8 a month at
+# rest, which is the whole cost of this deployment when idle, and a public
+# image of a public repository of synthetic data hides nothing. A public pull
+# needs no credential, so none exists to leak.
 
 resource "azurerm_key_vault" "main" {
   name                       = "kv-${var.prefix}-${random_string.suffix.result}"

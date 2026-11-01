@@ -54,8 +54,9 @@ Incidents · AI triage · Operations · First 90 days.
 Live deployment: Azure Container Apps (one app, nginx and FastAPI as two
 containers), a private registry pulled with a managed identity, Key Vault for
 the model key and the write token, scale to zero. Terraform in `infra-azure/`.
-There is no database server or blob store: the data is built inside the image
-and verified, so the image is the artefact.
+There is no database server, blob store or private registry: the data is
+built inside the image and verified, the images are public on GitHub
+Container Registry, so at rest the deployment costs pennies of vault and logs.
 
 ## Run it
 
@@ -89,16 +90,22 @@ rebuild with `--write-manifest` and commit `infra-azure/build.sha256`.
 
 ## Deploy
 
-```powershell
+Every push to master builds both images and publishes them to GitHub
+Container Registry (`.github/workflows/images.yml`), tagged with the short
+commit SHA. A commit whose build does not match the pinned manifest fails
+there and is never published. After the first run, set both packages to
+public in the repository's package settings; the app pulls with no credential.
+
+```bash
 cd infra-azure
 cp terraform.tfvars.example terraform.tfvars        # subscription, alert e-mail, model key (gitignored)
 terraform init
-terraform apply -target azurerm_container_registry.main -target azurerm_role_assignment.acr_push_self
-$acr = terraform output -raw acr_login_server
-az acr login --name $acr.Split('.')[0]
-$sha = git rev-parse --short HEAD
-docker build -f ../backend/Dockerfile --build-arg GIT_SHA=$sha -t "$acr/edgestackers/backend:$sha" ..
-docker build -f ../frontend/Dockerfile -t "$acr/edgestackers/frontend:$sha" ..
-docker push "$acr/edgestackers/backend:$sha"; docker push "$acr/edgestackers/frontend:$sha"
-terraform apply -var "image_tag=$sha"
+terraform apply -var "image_tag=$(git rev-parse --short HEAD)"
+terraform output                                    # the URL; -raw demo_write_token for the unlock link
 ```
+
+Terraform runs wherever you are signed in to Azure: a laptop, or Azure Cloud
+Shell with the repository cloned. State is local to that shell, so keep the
+state file. To build the images by hand instead, `docker build` with the two
+Dockerfiles and push to the same tags; `infra-azure/tf-az.Dockerfile` is a
+Terraform runner for laptops that cannot execute terraform.exe.

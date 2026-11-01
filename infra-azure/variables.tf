@@ -15,8 +15,14 @@ variable "location" {
   default     = "australiaeast"
 }
 
+variable "image_repo" {
+  description = "Public image repository prefix: <this>/frontend:<tag> and <this>/backend:<tag>. Public, so the app pulls with no credential."
+  type        = string
+  default     = "ghcr.io/wenhuaiqing/edgestackers-data-systems"
+}
+
 variable "image_tag" {
-  description = "Tag for both images in the registry (the commit SHA)."
+  description = "Tag for both images (the commit SHA)."
   type        = string
   default     = "latest"
 }
